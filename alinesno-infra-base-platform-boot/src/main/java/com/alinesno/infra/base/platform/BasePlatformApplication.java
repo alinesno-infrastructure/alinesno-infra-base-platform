@@ -14,10 +14,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAsync
 @SpringBootApplication
 @EnableScheduling
-public class OpsLogbackApplication {
+public class BasePlatformApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OpsLogbackApplication.class, args);
+		SpringApplication.run(BasePlatformApplication.class, args);
 	}
 
 }
