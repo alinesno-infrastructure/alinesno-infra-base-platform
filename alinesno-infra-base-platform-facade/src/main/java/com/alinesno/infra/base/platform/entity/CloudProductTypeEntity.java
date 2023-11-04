@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,111 +14,54 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("cloud_product_type")
+@Data
 public class CloudProductTypeEntity extends InfraBaseEntity {
 
 	/**
 	 * 名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer sortNumber;
 
 	/**
 	 * 背景图
 	 */
 	@TableField("banner")
+	@ColumnType(length=255)
+	@ColumnComment("背景图")
 	private String banner;
 
 	/**
 	 * 父类id
 	 */
 	@TableField("parent_id")
+	@ColumnType(length=255)
+	@ColumnComment("父类id")
 	private String parentId;
 
 	/**
 	 * 子名称
 	 */
 	@TableField("sub_name")
+	@ColumnType(length=255)
+	@ColumnComment("子名称")
 	private String subName;
 
 	/**
 	 * 产品类型描述
 	 */
 	@TableField("type_describe")
+	@ColumnType(length=255)
+	@ColumnComment("产品类型描述")
 	private String typeDescribe;
-
-	public CloudProductTypeEntity() {
-		super();
-	}
-
-	public CloudProductTypeEntity(String name, String typeDescribe) {
-		super();
-		this.name = name;
-		this.typeDescribe = typeDescribe;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getSortNumber() {
-		return sortNumber;
-	}
-
-	public void setSortNumber(Integer sortNumber) {
-		this.sortNumber = sortNumber;
-	}
-
-	public String getBanner() {
-		return banner;
-	}
-
-	public void setBanner(String banner) {
-		this.banner = banner;
-	}
-
-	public String getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
-
-	public String getSubName() {
-		return subName;
-	}
-
-	public void setSubName(String subName) {
-		this.subName = subName;
-	}
-
-	public String getTypeDescribe() {
-		return typeDescribe;
-	}
-
-	public void setTypeDescribe(String typeDescribe) {
-		this.typeDescribe = typeDescribe;
-	}
-
-	@Override
-	public String toString() {
-		return "CloudProductTypeEntity{" +
-				"name='" + name + '\'' +
-				", sortNumber=" + sortNumber +
-				", banner='" + banner + '\'' +
-				", parentId='" + parentId + '\'' +
-				", subName='" + subName + '\'' +
-				", typeDescribe='" + typeDescribe + '\'' +
-				'}';
-	}
 }

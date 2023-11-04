@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,47 +14,30 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("app_screen_item")
+@Data
 public class AppScreenProductItemEntity extends InfraBaseEntity {
 
 	/**
 	 * 场景ID
 	 */
 	@TableField
+	@ColumnType(length=50)
+	@ColumnComment("场景ID")
 	private String screenId;
 
 	/**
 	 * 项ID
 	 */
 	@TableField
+	@ColumnType(length=50)
+	@ColumnComment("项ID")
 	private String itemId;
 
 	/**
 	 * 用户ID
 	 */
 	@TableField
+	@ColumnType(length=50)
+	@ColumnComment("用户ID")
 	private String userId;
-
-	public String getScreenId() {
-		return screenId;
-	}
-
-	public void setScreenId(String screenId) {
-		this.screenId = screenId;
-	}
-
-	public String getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 }

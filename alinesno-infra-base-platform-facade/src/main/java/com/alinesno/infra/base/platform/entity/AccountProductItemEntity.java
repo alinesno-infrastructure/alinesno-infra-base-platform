@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -10,60 +13,79 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("account_product_item")
+@Data
 public class AccountProductItemEntity extends InfraBaseEntity {
 
 	/**
 	 * 服务名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("服务名称")
 	private String name;
 
 	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer sortNumber;
 
 	/**
 	 * 服务简介
 	 */
 	@TableField("product_brief")
+	@ColumnType(length=255)
+	@ColumnComment("服务简介")
 	private String productBrief;
 
 	/**
 	 * 服务描述
 	 */
 	@TableField("product_describe")
+	@ColumnType(length=255)
+	@ColumnComment("服务描述")
 	private String productDescribe;
 
 	/**
 	 * 副标题
 	 */
 	@TableField("sub_name")
+	@ColumnType(length=255)
+	@ColumnComment("副标题")
 	private String subName;
 
 	/**
 	 * 背景图
 	 */
 	@TableField("banner")
+	@ColumnType(length=255)
+	@ColumnComment("背景图")
 	private String banner;
 
 	/**
 	 * 简称
 	 */
 	@TableField("short_name")
+	@ColumnType(length=50)
+	@ColumnComment("简称")
 	private String shortName;
 
 	/**
 	 * 查看次数
 	 */
 	@TableField("view_count")
+	@ColumnType(length=10)
+	@ColumnComment("查看次数")
 	private Integer viewCount;
 
 	/**
 	 * 服务链接
 	 */
 	@TableField("link_path")
+	@ColumnType(length=255)
+	@ColumnComment("服务链接")
 	private String linkPath;
 
 	/**
@@ -71,6 +93,8 @@ public class AccountProductItemEntity extends InfraBaseEntity {
 	 * (正常normal|内测internal|公测public)
 	 */
 	@TableField("prod_status")
+	@ColumnType(length=10)
+	@ColumnComment("服务状态")
 	private String prodStatus;
 
 	/**
@@ -78,6 +102,8 @@ public class AccountProductItemEntity extends InfraBaseEntity {
 	 * (内置1|正常0)
 	 */
 	@TableField("has_inner")
+	@ColumnType(length=1)
+	@ColumnComment("是否内置链接")
 	private int hasInner;
 
 	/**
@@ -85,147 +111,23 @@ public class AccountProductItemEntity extends InfraBaseEntity {
 	 * (0启用|1禁用)
 	 */
 	@TableField("identity_status")
+	@ColumnType(length=1)
+	@ColumnComment("标识状态")
 	private String identityStatus;
 
 	/**
 	 * 所属类型id
 	 */
 	@TableField("product_type_id")
+	@ColumnType(length=10)
+	@ColumnComment("所属类型id")
 	private String productTypeId;
 
 	/**
 	 * 所属类型id
 	 */
 	@TableField("link_open_type")
+	@ColumnType(length=1)
+	@ColumnComment("所属类型id")
 	private String linkOpenType;
-
-	public int getHasInner() {
-		return hasInner;
-	}
-
-	public void setHasInner(int hasInner) {
-		this.hasInner = hasInner;
-	}
-
-	public String getLinkOpenType() {
-		return linkOpenType;
-	}
-
-	public void setLinkOpenType(String linkOpenType) {
-		this.linkOpenType = linkOpenType;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getSortNumber() {
-		return sortNumber;
-	}
-
-	public void setSortNumber(Integer sortNumber) {
-		this.sortNumber = sortNumber;
-	}
-
-	public String getProductBrief() {
-		return productBrief;
-	}
-
-	public void setProductBrief(String productBrief) {
-		this.productBrief = productBrief;
-	}
-
-	public String getProductDescribe() {
-		return productDescribe;
-	}
-
-	public void setProductDescribe(String productDescribe) {
-		this.productDescribe = productDescribe;
-	}
-
-	public String getSubName() {
-		return subName;
-	}
-
-	public void setSubName(String subName) {
-		this.subName = subName;
-	}
-
-	public String getBanner() {
-		return banner;
-	}
-
-	public void setBanner(String banner) {
-		this.banner = banner;
-	}
-
-	public String getShortName() {
-		return shortName;
-	}
-
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
-	}
-
-	public Integer getViewCount() {
-		return viewCount;
-	}
-
-	public void setViewCount(Integer viewCount) {
-		this.viewCount = viewCount;
-	}
-
-	public String getLinkPath() {
-		return linkPath;
-	}
-
-	public void setLinkPath(String linkPath) {
-		this.linkPath = linkPath;
-	}
-
-	public String getProdStatus() {
-		return prodStatus;
-	}
-
-	public void setProdStatus(String prodStatus) {
-		this.prodStatus = prodStatus;
-	}
-
-	public String getIdentityStatus() {
-		return identityStatus;
-	}
-
-	public void setIdentityStatus(String identityStatus) {
-		this.identityStatus = identityStatus;
-	}
-
-	public String getProductTypeId() {
-		return productTypeId;
-	}
-
-	public void setProductTypeId(String productTypeId) {
-		this.productTypeId = productTypeId;
-	}
-
-	@Override
-	public String toString() {
-		return "AccountProductItemEntity{" +
-				"name='" + name + '\'' +
-				", sortNumber=" + sortNumber +
-				", productBrief='" + productBrief + '\'' +
-				", productDescribe='" + productDescribe + '\'' +
-				", subName='" + subName + '\'' +
-				", banner='" + banner + '\'' +
-				", shortName='" + shortName + '\'' +
-				", viewCount=" + viewCount +
-				", linkPath='" + linkPath + '\'' +
-				", prodStatus='" + prodStatus + '\'' +
-				", identityStatus='" + identityStatus + '\'' +
-				", productTypeId='" + productTypeId + '\'' +
-				'}';
-	}
 }

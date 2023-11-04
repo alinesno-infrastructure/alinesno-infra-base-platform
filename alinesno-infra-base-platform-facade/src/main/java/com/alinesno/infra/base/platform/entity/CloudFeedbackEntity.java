@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("cloud_feedback")
+@Data
 public class CloudFeedbackEntity extends InfraBaseEntity {
 
 	/**
@@ -19,6 +23,8 @@ public class CloudFeedbackEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "建议类型")
 	@TableField("type_code")
+	@ColumnType(length=10)
+	@ColumnComment("建议类型")
 	private String typeCode;
 
 	/**
@@ -26,6 +32,8 @@ public class CloudFeedbackEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "标题")
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("标题")
 	private String title;
 
 	/**
@@ -33,6 +41,8 @@ public class CloudFeedbackEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "问题描述")
 	@TableField("problem_desc")
+	@ColumnType(length=255)
+	@ColumnComment("问题描述")
 	private String problemDesc;
 
 	/**
@@ -40,6 +50,8 @@ public class CloudFeedbackEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "建议方案")
 	@TableField("proposed_solution")
+	@ColumnType(length=255)
+	@ColumnComment("建议方案")
 	private String proposedSolution;
 
 	/**
@@ -47,6 +59,8 @@ public class CloudFeedbackEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "关联产品")
 	@TableField("product_item_id")
+	@ColumnType(length=50)
+	@ColumnComment("关联产品")
 	private String productItemId;
 
 	/**
@@ -54,66 +68,7 @@ public class CloudFeedbackEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "账户名")
 	@TableField("account_id")
+	@ColumnType(length=10)
+	@ColumnComment("账户名")
 	private String accountId;
-
-
-	public String getTypeCode() {
-		return typeCode;
-	}
-
-	public void setTypeCode(String typeCode) {
-		this.typeCode = typeCode;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getProblemDesc() {
-		return problemDesc;
-	}
-
-	public void setProblemDesc(String problemDesc) {
-		this.problemDesc = problemDesc;
-	}
-
-	public String getProposedSolution() {
-		return proposedSolution;
-	}
-
-	public void setProposedSolution(String proposedSolution) {
-		this.proposedSolution = proposedSolution;
-	}
-
-	public String getProductItemId() {
-		return productItemId;
-	}
-
-	public void setProductItemId(String productItemId) {
-		this.productItemId = productItemId;
-	}
-
-	public String getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	@Override
-	public String toString() {
-		return "CloudFeedbackEntity{" +
-				"typeCode='" + typeCode + '\'' +
-				", title='" + title + '\'' +
-				", problemDesc='" + problemDesc + '\'' +
-				", proposedSolution='" + proposedSolution + '\'' +
-				", productItemId='" + productItemId + '\'' +
-				", accountId='" + accountId + '\'' +
-				'}';
-	}
 }

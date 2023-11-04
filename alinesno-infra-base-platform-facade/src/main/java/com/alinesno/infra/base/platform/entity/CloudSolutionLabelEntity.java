@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,86 +14,46 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("cloud_solution_label")
+@Data
 public class CloudSolutionLabelEntity extends InfraBaseEntity {
 
 	/**
 	 * 标题
 	 */
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("标题")
 	private String title;
 
 	/**
 	 * 类型(business业务|advantage优势|case案例)
 	 */
 	@TableField("label_type")
+	@ColumnType(length=255)
+	@ColumnComment("类型(business业务|advantage优势|case案例)")
 	private String labelType;
 
 	/**
 	 * 描述
 	 */
 	@TableField("label_describe")
+	@ColumnType(length=255)
+	@ColumnComment("描述")
 	private String labelDescribe;
 
 	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer sortNumber;
 
 	/**
 	 * 所属解决方案id
 	 */
 	@TableField("solution_article_id")
+	@ColumnType(length=255)
+	@ColumnComment("所属解决方案id")
 	private String solutionArticleId;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getLabelType() {
-		return labelType;
-	}
-
-	public void setLabelType(String labelType) {
-		this.labelType = labelType;
-	}
-
-	public String getLabelDescribe() {
-		return labelDescribe;
-	}
-
-	public void setLabelDescribe(String labelDescribe) {
-		this.labelDescribe = labelDescribe;
-	}
-
-	public Integer getSortNumber() {
-		return sortNumber;
-	}
-
-	public void setSortNumber(Integer sortNumber) {
-		this.sortNumber = sortNumber;
-	}
-
-	public String getSolutionArticleId() {
-		return solutionArticleId;
-	}
-
-	public void setSolutionArticleId(String solutionArticleId) {
-		this.solutionArticleId = solutionArticleId;
-	}
-
-	@Override
-	public String toString() {
-		return "CloudSolutionLabelEntity{" +
-				"title='" + title + '\'' +
-				", labelType='" + labelType + '\'' +
-				", labelDescribe='" + labelDescribe + '\'' +
-				", sortNumber=" + sortNumber +
-				", solutionArticleId='" + solutionArticleId + '\'' +
-				'}';
-	}
 }

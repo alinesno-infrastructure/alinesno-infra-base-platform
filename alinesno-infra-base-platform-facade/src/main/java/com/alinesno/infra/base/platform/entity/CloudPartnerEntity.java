@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,131 +14,70 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("cloud_partner")
+@Data
 public class CloudPartnerEntity extends InfraBaseEntity {
 
 	/**
 	 * 合作伙伴类型
 	 */
 	@TableField("partner_type")
+	@ColumnType(length=255)
+	@ColumnComment("合作伙伴类型")
 	private String partnerType;
 
 	/**
 	 * 公司logo
 	 */
 	@TableField("logo")
+	@ColumnType(length=255)
+	@ColumnComment("公司logo")
 	private String logo;
 
 	/**
 	 * 公司名称
 	 */
 	@TableField("company_name")
+	@ColumnType(length=255)
+	@ColumnComment("公司名称")
 	private String companyName;
 
 	/**
 	 * 联系电话
 	 */
 	@TableField("company_tel")
+	@ColumnType(length=255)
+	@ColumnComment("联系电话")
 	private String companyTel;
 
 	/**
 	 * 联系邮箱
 	 */
 	@TableField("company_email")
+	@ColumnType(length=255)
+	@ColumnComment("联系邮箱")
 	private String companyEmail;
 
 	/**
 	 * 公司地址
 	 */
 	@TableField("company_address")
+	@ColumnType(length=255)
+	@ColumnComment("公司地址")
 	private String companyAddress;
 
 	/**
 	 * 公司简介
 	 */
 	@TableField("company_desc")
+	@ColumnType(length=255)
+	@ColumnComment("公司简介")
 	private String companyDesc;
 
 	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer sortNumber;
-
-	public String getPartnerType() {
-		return partnerType;
-	}
-
-	public void setPartnerType(String partnerType) {
-		this.partnerType = partnerType;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getCompanyTel() {
-		return companyTel;
-	}
-
-	public void setCompanyTel(String companyTel) {
-		this.companyTel = companyTel;
-	}
-
-	public String getCompanyEmail() {
-		return companyEmail;
-	}
-
-	public void setCompanyEmail(String companyEmail) {
-		this.companyEmail = companyEmail;
-	}
-
-	public String getCompanyAddress() {
-		return companyAddress;
-	}
-
-	public void setCompanyAddress(String companyAddress) {
-		this.companyAddress = companyAddress;
-	}
-
-	public String getCompanyDesc() {
-		return companyDesc;
-	}
-
-	public void setCompanyDesc(String companyDesc) {
-		this.companyDesc = companyDesc;
-	}
-
-	public Integer getSortNumber() {
-		return sortNumber;
-	}
-
-	public void setSortNumber(Integer sortNumber) {
-		this.sortNumber = sortNumber;
-	}
-
-	@Override
-	public String toString() {
-		return "CloudPartnerEntity{" +
-				"partnerType='" + partnerType + '\'' +
-				", logo='" + logo + '\'' +
-				", companyName='" + companyName + '\'' +
-				", companyTel='" + companyTel + '\'' +
-				", companyEmail='" + companyEmail + '\'' +
-				", companyAddress='" + companyAddress + '\'' +
-				", companyDesc='" + companyDesc + '\'' +
-				", sortNumber=" + sortNumber +
-				'}';
-	}
 }

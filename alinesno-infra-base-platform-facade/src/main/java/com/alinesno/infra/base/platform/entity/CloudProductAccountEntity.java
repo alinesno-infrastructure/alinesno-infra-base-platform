@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,56 +14,30 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("cloud_product_account")
+@Data
 public class CloudProductAccountEntity extends InfraBaseEntity {
 
 	/**
 	 * 账户id
 	 */
 	@TableField("account_id")
+	@ColumnType(length=255)
+	@ColumnComment("账户id")
 	private String accountId;
 
 	/**
 	 * 产品id
 	 */
 	@TableField("product_item_id")
+	@ColumnType(length=255)
+	@ColumnComment("产品id")
 	private String productItemId;
 
 	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer sortNumber;
-
-	public String getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	public String getProductItemId() {
-		return productItemId;
-	}
-
-	public void setProductItemId(String productItemId) {
-		this.productItemId = productItemId;
-	}
-
-	public Integer getSortNumber() {
-		return sortNumber;
-	}
-
-	public void setSortNumber(Integer sortNumber) {
-		this.sortNumber = sortNumber;
-	}
-
-	@Override
-	public String toString() {
-		return "CloudProductAccountEntity{" +
-				"accountId='" + accountId + '\'' +
-				", productItemId='" + productItemId + '\'' +
-				", sortNumber=" + sortNumber +
-				'}';
-	}
 }

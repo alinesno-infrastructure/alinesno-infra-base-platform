@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,86 +14,46 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("cloud_product_apply")
+@Data
 public class CloudProductApplyEntity extends InfraBaseEntity {
 
 	/**
 	 * 用户名
 	 */
 	@TableField("account_name")
+	@ColumnType(length=255)
+	@ColumnComment("用户名")
 	private String accountName;
 
 	/**
 	 * 账户id
 	 */
 	@TableField("account_id")
+	@ColumnType(length=255)
+	@ColumnComment("账户id")
 	private String accountId;
 
 	/**
 	 * 产品id
 	 */
 	@TableField("product_item_id")
+	@ColumnType(length=255)
+	@ColumnComment("产品id")
 	private String productItemId;
 
 	/**
 	 * 申请状态(0未审核|1已审核|2不通过|3通过)
 	 */
 	@TableField("apply_status")
+	@ColumnType(length=255)
+	@ColumnComment("申请状态(0未审核|1已审核|2不通过|3通过)")
 	private Integer applyStatus;
 
 	/**
 	 * 申请原因
 	 */
 	@TableField("apply_reason")
+	@ColumnType(length=255)
+	@ColumnComment("申请原因")
 	private String applyReason;
-
-	public String getAccountName() {
-		return accountName;
-	}
-
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
-	}
-
-	public String getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	public String getProductItemId() {
-		return productItemId;
-	}
-
-	public void setProductItemId(String productItemId) {
-		this.productItemId = productItemId;
-	}
-
-	public Integer getApplyStatus() {
-		return applyStatus;
-	}
-
-	public void setApplyStatus(Integer applyStatus) {
-		this.applyStatus = applyStatus;
-	}
-
-	public String getApplyReason() {
-		return applyReason;
-	}
-
-	public void setApplyReason(String applyReason) {
-		this.applyReason = applyReason;
-	}
-
-	@Override
-	public String toString() {
-		return "CloudProductApplyEntity{" +
-				"accountName='" + accountName + '\'' +
-				", accountId='" + accountId + '\'' +
-				", productItemId='" + productItemId + '\'' +
-				", applyStatus=" + applyStatus +
-				", applyReason='" + applyReason + '\'' +
-				'}';
-	}
 }

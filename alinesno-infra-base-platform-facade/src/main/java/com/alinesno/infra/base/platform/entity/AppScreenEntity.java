@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,61 +14,38 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("app_screen")
+@Data
 public class AppScreenEntity extends InfraBaseEntity {
 
     /**
      * 图标
      */
     @TableField
+	@ColumnType(length=50)
+	@ColumnComment("图标")
     private String icon;
 
     /**
      * 标题
      */
     @TableField
+	@ColumnType(length=255)
+	@ColumnComment("标题")
     private String title;
 
     /**
      * 备注
      */
     @TableField
+	@ColumnType(length=255)
+	@ColumnComment("备注")
     private String remark;
 
     /**
      * 排序
      */
     @TableField
+	@ColumnType(length=2)
+	@ColumnComment("排序")
     private Integer screenIndex;
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Integer getScreenIndex() {
-        return screenIndex;
-    }
-
-    public void setScreenIndex(Integer screenIndex) {
-        this.screenIndex = screenIndex;
-    }
 }
