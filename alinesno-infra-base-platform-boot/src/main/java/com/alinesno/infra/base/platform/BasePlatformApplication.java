@@ -1,5 +1,6 @@
 package com.alinesno.infra.base.platform;
 
+import com.alinesno.infra.common.facade.enable.EnableActable;
 import com.alinesno.infra.common.web.adapter.sso.enable.EnableInfraSsoApi;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author luoxiaodong
  * @version 1.0.0.
  */
+@EnableActable
 @EnableInfraSsoApi
 @EnableAsync
 @SpringBootApplication
