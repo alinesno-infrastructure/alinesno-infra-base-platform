@@ -29,12 +29,12 @@
         <module>alinesno-infra-base-platform-facade</module>  <!-- 接口和引用 -->
         <module>alinesno-infra-base-platform-domain</module>  <!-- 领域服务 -->
         <module>alinesno-infra-base-platform-adapter</module> <!-- 适配层 -->
-        <module>alinesno-infra-base-platform-api</module>  <!-- 接口服务 -->
+        <module>alinesno-infra-base-platform-gateway</module>  <!-- 接口服务 -->
         <module>alinesno-infra-base-platform-client</module>  <!-- 对外引用 -->
         <module>alinesno-infra-base-platform-boot</module>  <!-- 启动服务 -->
 
         <!-- 前端服务
-        <module>alinesno-infra-base-platform-admin</module>
+        <module>alinesno-infra-base-platform-ui</module>
         -->
 
     </modules>
