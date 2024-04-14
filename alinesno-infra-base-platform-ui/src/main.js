@@ -47,7 +47,11 @@ import DictTag from '@/components/DictTag'
 import GLOBAL_VAR from '@/api/global_variable.js'
 import GLOBAL_FUN from '@/api/global_function.js'
 
+import * as echarts from 'echarts';//引入echarts
+
 const app = createApp(App)
+
+app.config.globalProperties.$echarts = echarts
 
 app.config.globalProperties.GLOBAL_VAR = GLOBAL_VAR
 app.config.globalProperties.GLOBAL_FUN = GLOBAL_FUN
