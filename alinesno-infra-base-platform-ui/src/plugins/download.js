@@ -52,7 +52,7 @@ export default {
     }).then((res) => {
       const isBlob = blobValidate(res.data);
       if (isBlob) {
-        const blob = new Blob([res.data], { type: 'application/zip' })
+        const blob = new Blob([res.data], { type: 'ProductItem/zip' })
         this.saveAs(blob, name)
       } else {
         this.printErrMsg(res.data);

@@ -8,7 +8,7 @@ let baseURL = "http://"+baseHost+"/api"
 let gatewayRoutesURL = "http://127.0.0.1:8771"
 const errMsg = "操作失败"
 let successMsg = "操作成功"
-let contentType = "application/json;charset=UTF-8"
+let contentType = "ProductItem/json;charset=UTF-8"
 let systemVersion = "snapshot-nacos.v.3.2"
 
 // 分组类型，暂不放到数据字典，直接由前端添加

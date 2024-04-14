@@ -204,7 +204,7 @@ const screenJsonList = [
         "id": "6ba4914274a9b3fb09580caa61b047a6",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -220,7 +220,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "技术研发体系",
         "hasRecommend": 0,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       },
       {
@@ -236,7 +236,7 @@ const screenJsonList = [
         "id": "afc6ca933b57a3c1766247c124da8702",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -252,7 +252,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "项目生成器服务",
         "hasRecommend": 1,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       },
       {
@@ -268,7 +268,7 @@ const screenJsonList = [
         "id": "12eda4ce44d5b13826bc1996ee0f0012",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -284,7 +284,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "微服务研发引擎",
         "hasRecommend": 0,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       }
     ],
@@ -297,9 +297,9 @@ const screenJsonList = [
     "tenantId": "0",
     "fieldProp": "integration",
     "id": "aae9c0e5bbe9ac17171e069c027dad2a",
-    "applicationId": null,
+    "ProductItemId": null,
     "operatorId": "784553886277959680",
-    "applicationName": null,
+    "ProductItemName": null,
     "fieldId": null,
     "status": "1"
   },
@@ -326,7 +326,7 @@ const screenJsonList = [
         "id": "c230a72a7e1bb97c8d383a27327d7a77",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -342,7 +342,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": " 多渠道通知服务 ",
         "hasRecommend": 1,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       },
       {
@@ -358,7 +358,7 @@ const screenJsonList = [
         "id": "14d3deb5b6fcfdb950a9f1a0d1531abf",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -374,7 +374,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "分布式消息服务",
         "hasRecommend": 1,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       },
       {
@@ -390,7 +390,7 @@ const screenJsonList = [
         "id": "71340e02f2c3a2da8adc69c93910ab1a",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": null,
         "banner": null,
@@ -406,7 +406,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "安全验证码服务",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       },
       {
@@ -422,7 +422,7 @@ const screenJsonList = [
         "id": "053b9e440df2d3a2ddfc714b206c9731",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -438,7 +438,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "基设平台管理",
         "hasRecommend": 1,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       },
       {
@@ -454,7 +454,7 @@ const screenJsonList = [
         "id": "d35c6e325ebcbeeb2206cde013d0542e",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -470,7 +470,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "权限资源引擎服务",
         "hasRecommend": 1,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       },
       {
@@ -486,7 +486,7 @@ const screenJsonList = [
         "id": "e87772d81e3a2fb37e82c9cc97c050de",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -502,7 +502,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "单点登陆管理",
         "hasRecommend": 1,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       },
       {
@@ -518,7 +518,7 @@ const screenJsonList = [
         "id": "ffb4d99c033cbacf52e9e0945c7fefd7",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -534,7 +534,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "公共存储服务",
         "hasRecommend": 1,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       }
     ],
@@ -547,9 +547,9 @@ const screenJsonList = [
     "tenantId": "0",
     "fieldProp": "integration",
     "id": "e7eb9a5acf75b02b80b1bb0ec1dbd71a",
-    "applicationId": null,
+    "ProductItemId": null,
     "operatorId": "784553886277959680",
-    "applicationName": null,
+    "ProductItemName": null,
     "fieldId": null,
     "status": "1"
   },
@@ -576,7 +576,7 @@ const screenJsonList = [
         "id": "a18f33c24aaf645d80ab4b96ff4ba5ce",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -592,7 +592,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "数据采集总线",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       },
       {
@@ -608,7 +608,7 @@ const screenJsonList = [
         "id": "a23cbf1efa2dc6df7ac5820102dbae5f",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -624,7 +624,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "一体化安全触感服务",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       }
     ],
@@ -637,9 +637,9 @@ const screenJsonList = [
     "tenantId": "0",
     "fieldProp": "integration",
     "id": "214f92e4267f5dca79b129351f884f3f",
-    "applicationId": null,
+    "ProductItemId": null,
     "operatorId": "784553886277959680",
-    "applicationName": null,
+    "ProductItemName": null,
     "fieldId": null,
     "status": "1"
   },
@@ -666,7 +666,7 @@ const screenJsonList = [
         "id": "b8bb226de8de62decb1e293283fc6c62",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -682,7 +682,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "配置管理服务",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       },
       {
@@ -698,7 +698,7 @@ const screenJsonList = [
         "id": "569297434f090ac584cf615c333f6ecd",
         "viewCount": null,
         "operatorId": null,
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -714,7 +714,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "审计日志服务",
         "hasRecommend": 1,
-        "applicationId": "0",
+        "ProductItemId": "0",
         "shortName": null
       },
       {
@@ -730,7 +730,7 @@ const screenJsonList = [
         "id": "801e85de62ca5b9f8f76b5e31987730e",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -746,7 +746,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "自动化操作服务",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       }
     ],
@@ -759,9 +759,9 @@ const screenJsonList = [
     "tenantId": "0",
     "fieldProp": "integration",
     "id": "5e33fa098910e77c8334d1d8c668dd69",
-    "applicationId": null,
+    "ProductItemId": null,
     "operatorId": "784553886277959680",
-    "applicationName": null,
+    "ProductItemName": null,
     "fieldId": null,
     "status": "1"
   },
@@ -788,7 +788,7 @@ const screenJsonList = [
         "id": "c6fca12e348cccf97495b3aea33adcef",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -804,7 +804,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "容器云管理平台",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       }
     ],
@@ -817,9 +817,9 @@ const screenJsonList = [
     "tenantId": "0",
     "fieldProp": "integration",
     "id": "8beaa35a097bf2cd7bdc9714e41336e2",
-    "applicationId": null,
+    "ProductItemId": null,
     "operatorId": "784553886277959680",
-    "applicationName": null,
+    "ProductItemName": null,
     "fieldId": null,
     "status": "1"
   },
@@ -846,7 +846,7 @@ const screenJsonList = [
         "id": "801e85de62ca5b9f8f76b5e31987730e",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -862,7 +862,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "自动化操作服务",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       },
       {
@@ -878,7 +878,7 @@ const screenJsonList = [
         "id": "6a3512430d3b610ffa67263ee365cc13",
         "viewCount": null,
         "operatorId": "784553886277959680",
-        "applicationName": null,
+        "ProductItemName": null,
         "fieldId": null,
         "lastUpdateOperatorId": "784553886277959680",
         "banner": null,
@@ -894,7 +894,7 @@ const screenJsonList = [
         "tenantId": "0",
         "name": "持续集成服务",
         "hasRecommend": 0,
-        "applicationId": null,
+        "ProductItemId": null,
         "shortName": null
       }
     ],
@@ -907,9 +907,9 @@ const screenJsonList = [
     "tenantId": "0",
     "fieldProp": "integration",
     "id": "ea82737f643d66b4b702cfd098a82d62",
-    "applicationId": null,
+    "ProductItemId": null,
     "operatorId": "784553886277959680",
-    "applicationName": null,
+    "ProductItemName": null,
     "fieldId": null,
     "status": "1"
   }

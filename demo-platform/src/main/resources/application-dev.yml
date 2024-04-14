@@ -2,7 +2,7 @@ server:
   port: 30120
 
 spring:
-  application:
+  ProductItem:
     name: demo-platform
   data:
     redis:

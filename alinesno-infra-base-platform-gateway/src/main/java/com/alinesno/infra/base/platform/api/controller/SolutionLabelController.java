@@ -1,7 +1,7 @@
 package com.alinesno.infra.base.platform.api.controller;
 
-import com.alinesno.infra.base.platform.entity.AccountCollectEntity;
-import com.alinesno.infra.base.platform.service.IAccountCollectService;
+import com.alinesno.infra.base.platform.entity.SolutionLabelEntity;
+import com.alinesno.infra.base.platform.service.ISolutionLabelService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
@@ -19,24 +19,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 处理与AccountCollectEntity相关的请求的Controller。
- * 继承自BaseController类并实现IAccountCollectService接口。
+ * 处理与SolutionLabelEntity相关的请求的Controller。
+ * 继承自BaseController类并实现ISolutionLabelService接口。
  *
  * @author LuoXiaoDong
  * @version 1.0.0
  */
 @Slf4j
-@Api(tags = "AccountCollect")
+@Api(tags = "SolutionLabel")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/base/platform/accountCollect")
-public class AccountCollectController extends BaseController<AccountCollectEntity, IAccountCollectService> {
+@RequestMapping("/api/infra/base/platform/solutionLabel")
+public class SolutionLabelController extends BaseController<SolutionLabelEntity, ISolutionLabelService> {
 
     @Autowired
-    private IAccountCollectService service;
+    private ISolutionLabelService service;
 
     /**
-     * 获取AccountCollectEntity的DataTables数据。
+     * 获取SolutionLabelEntity的DataTables数据。
      *
      * @param request HttpServletRequest对象。
      * @param model   Model对象。
@@ -51,7 +51,7 @@ public class AccountCollectController extends BaseController<AccountCollectEntit
     }
 
     @Override
-    public IAccountCollectService getFeign() {
+    public ISolutionLabelService getFeign() {
         return this.service;
     }
 }

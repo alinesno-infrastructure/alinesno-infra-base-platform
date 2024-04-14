@@ -18,7 +18,7 @@
         </encoder>
     </appender>
 
-    <springProperty scope="context" name="watcher.appName" source="spring.application.name"/>
+    <springProperty scope="context" name="watcher.appName" source="spring.ProductItem.name"/>
     <springProperty scope="context" name="watcher.kafkaServers" source="alinesno.base.platform.kafkaServers"/>
     <springProperty scope="context" name="watcher.env" source="alinesno.base.platform.env"/>
     <springProperty scope="context" name="watcher.userKey" source="alinesno.base.platform.user-key"/>

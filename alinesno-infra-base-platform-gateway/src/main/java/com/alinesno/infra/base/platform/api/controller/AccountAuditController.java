@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "AccountAudit")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/base/sensitive/application")
+@RequestMapping("/api/infra/base/platform/accountAudit")
 public class AccountAuditController extends BaseController<AccountAuditEntity, IAccountAuditService> {
 
     @Autowired

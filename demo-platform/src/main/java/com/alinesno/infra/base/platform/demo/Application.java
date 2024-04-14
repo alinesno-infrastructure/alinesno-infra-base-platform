@@ -1,14 +1,14 @@
 package com.alinesno.infra.base.init.demo;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringProductItem;
+import org.springframework.boot.autoconfigure.SpringBootProductItem;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-public class Application {
+@SpringBootProductItem(exclude = DataSourceAutoConfiguration.class)
+public class ProductItem {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringProductItem.run(ProductItem.class, args);
 	}
 
 }
