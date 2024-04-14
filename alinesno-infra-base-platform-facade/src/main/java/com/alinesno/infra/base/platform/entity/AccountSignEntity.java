@@ -6,6 +6,7 @@ import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.EqualsAndHashCode;
 
 /**
  * 账号签到实体类
@@ -13,6 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("account_sign")
 @Data
 public class AccountSignEntity extends InfraBaseEntity {

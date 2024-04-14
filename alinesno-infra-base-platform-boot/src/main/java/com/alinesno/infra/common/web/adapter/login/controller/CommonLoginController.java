@@ -137,12 +137,12 @@ public class CommonLoginController {
                         )) ;
 
                 // 应用管理
-                Menu m2 = new Menu("Application", "/application", false, "noRedirect", "Layout" , true , new Menu.Meta("应用管理", "link", false, null),
-                        List.of(
-                                new Menu("应用列表", "application/list", false, false, "applicationList",  new Menu.Meta("应用列表", "link", false, null)),
-                                new Menu("用户应用", "application/user", false, false, "userApplications",  new Menu.Meta("用户应用", "list", false, null)),
-                                new Menu("收藏应用", "application/favorite", false, false, "favoriteApplications",  new Menu.Meta("收藏应用", "monitor", false, null))
-                       )) ;
+//                Menu m2 = new Menu("Application", "/application", false, "noRedirect", "Layout" , true , new Menu.Meta("应用管理", "link", false, null),
+//                        List.of(
+//                                new Menu("应用列表", "application/list", false, false, "applicationList",  new Menu.Meta("应用列表", "link", false, null)),
+//                                new Menu("用户应用", "application/user", false, false, "userApplications",  new Menu.Meta("用户应用", "list", false, null)),
+//                                new Menu("收藏应用", "application/favorite", false, false, "favoriteApplications",  new Menu.Meta("收藏应用", "monitor", false, null))
+//                       )) ;
 
                 // 产品管理
                 Menu m3 = new Menu("Product", "/product", false, "noRedirect", "Layout" , true , new Menu.Meta("产品管理", "redis", false, null),
@@ -212,7 +212,7 @@ public class CommonLoginController {
         // 将所有菜单存储在一个列表中
         List<Menu> menus = List.of(
                 m1,
-                m2,
+//                m2,
                 m3,
                 m4,
                 m5,

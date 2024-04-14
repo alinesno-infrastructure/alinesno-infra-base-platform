@@ -9,21 +9,22 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.EqualsAndHashCode;
 
 /**
- * 账户产品项实体类
+ * 这是一个用于存储云产品项信息的实体类
+ *
  * @author luoxiaodong
  * @version 1.0.0
  */
 @EqualsAndHashCode(callSuper = true)
-@TableName("account_product_item")
+@TableName("product_item")
 @Data
-public class AccountProductItemEntity extends InfraBaseEntity {
+public class ProductItemEntity extends InfraBaseEntity {
 
 	/**
-	 * 服务名称
+	 * 产品名称
 	 */
 	@TableField("name")
 	@ColumnType(length=255)
-	@ColumnComment("服务名称")
+	@ColumnComment("产品名称")
 	private String name;
 
 	/**
@@ -35,19 +36,19 @@ public class AccountProductItemEntity extends InfraBaseEntity {
 	private Integer sortNumber;
 
 	/**
-	 * 服务简介
+	 * 产品简介
 	 */
 	@TableField("product_brief")
 	@ColumnType(length=255)
-	@ColumnComment("服务简介")
+	@ColumnComment("产品简介")
 	private String productBrief;
 
 	/**
-	 * 服务描述
+	 * 产品描述
 	 */
 	@TableField("product_describe")
 	@ColumnType(length=255)
-	@ColumnComment("服务描述")
+	@ColumnComment("产品描述")
 	private String productDescribe;
 
 	/**
@@ -70,7 +71,7 @@ public class AccountProductItemEntity extends InfraBaseEntity {
 	 * 简称
 	 */
 	@TableField("short_name")
-	@ColumnType(length=50)
+	@ColumnType(length=255)
 	@ColumnComment("简称")
 	private String shortName;
 
@@ -78,58 +79,63 @@ public class AccountProductItemEntity extends InfraBaseEntity {
 	 * 查看次数
 	 */
 	@TableField("view_count")
-	@ColumnType(length=10)
+	@ColumnType(length=255)
 	@ColumnComment("查看次数")
 	private Integer viewCount;
 
 	/**
-	 * 服务链接
+	 * 产品链接
 	 */
 	@TableField("link_path")
 	@ColumnType(length=255)
-	@ColumnComment("服务链接")
+	@ColumnComment("产品链接")
 	private String linkPath;
 
 	/**
-	 * 服务状态
-	 * (正常normal|内测internal|公测public)
+	 * 当前状态(规划planning|研究research|生产production)
+	 */
+	@TableField("item_status")
+	@ColumnType(length=255)
+	@ColumnComment("当前状态(规划planning|研究research|生产production)")
+	private String itemStatus;
+
+	/**
+	 * 产品状态(正常normal|内测internal|公测public)
 	 */
 	@TableField("prod_status")
-	@ColumnType(length=10)
-	@ColumnComment("服务状态")
+	@ColumnType(length=255)
+	@ColumnComment("产品状态(正常normal|内测internal|公测public)")
 	private String prodStatus;
 
 	/**
-	 * 是否内置链接
-	 * (内置1|正常0)
-	 */
-	@TableField("has_inner")
-	@ColumnType(length=1)
-	@ColumnComment("是否内置链接")
-	private int hasInner;
-
-	/**
-	 * 标识状态
-	 * (0启用|1禁用)
+	 * 标识状态(0启用|1禁用)
 	 */
 	@TableField("identity_status")
-	@ColumnType(length=1)
-	@ColumnComment("标识状态")
+	@ColumnType(length=255)
+	@ColumnComment("标识状态(0启用|1禁用)")
 	private String identityStatus;
 
 	/**
 	 * 所属类型id
 	 */
 	@TableField("product_type_id")
-	@ColumnType(length=10)
+	@ColumnType(length=255)
 	@ColumnComment("所属类型id")
 	private String productTypeId;
 
 	/**
-	 * 所属类型id
+	 * 是否推荐
 	 */
-	@TableField("link_open_type")
-	@ColumnType(length=1)
-	@ColumnComment("所属类型id")
-	private String linkOpenType;
+	@TableField("has_recommend")
+	@ColumnType(length=255)
+	@ColumnComment("是否推荐")
+	private int hasRecommend;
+
+	/**
+	 * 是否内置链接(内置1|正常0)
+	 */
+	@TableField("has_inner")
+	@ColumnType(length=255)
+	@ColumnComment("是否内置链接(内置1|正常0)")
+	private int hasInner;
 }
