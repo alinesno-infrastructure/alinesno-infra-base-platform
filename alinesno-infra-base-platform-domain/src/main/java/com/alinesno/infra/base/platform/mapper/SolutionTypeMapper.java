@@ -1,6 +1,5 @@
 package com.alinesno.infra.base.platform.mapper;
 
-import com.alinesno.infra.base.platform.entity.AccountAuditEntity;
 import com.alinesno.infra.base.platform.entity.SolutionTypeEntity;
 import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
 

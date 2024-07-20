@@ -28,12 +28,22 @@ public class ProductTypeEntity extends InfraBaseEntity {
 	private String name;
 
 	/**
+	 * 产品类型描述
+	 */
+	@TableField("type_describe")
+	@ColumnType(length=255)
+	@ColumnComment("产品类型描述")
+	private String typeDescribe;
+
+	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
 	@ColumnType(length=255)
 	@ColumnComment("排序")
 	private Integer sortNumber;
+
+
 
 	/**
 	 * 背景图
@@ -52,18 +62,12 @@ public class ProductTypeEntity extends InfraBaseEntity {
 	private String parentId;
 
 	/**
-	 * 子名称
+	 * 备注
 	 */
-	@TableField("sub_name")
+	@TableField("remark")
 	@ColumnType(length=255)
-	@ColumnComment("子名称")
-	private String subName;
+	@ColumnComment("备注")
+	private String remark;
 
-	/**
-	 * 产品类型描述
-	 */
-	@TableField("type_describe")
-	@ColumnType(length=255)
-	@ColumnComment("产品类型描述")
-	private String typeDescribe;
+
 }

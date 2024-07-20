@@ -43,6 +43,7 @@ export function getProductItem(databaseId) {
 
 // 新增数据库
 export function addProductItem(data) {
+  debugger
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
@@ -52,6 +53,7 @@ export function addProductItem(data) {
 
 // 修改数据库
 export function updateProductItem(data) {
+  debugger
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
@@ -65,4 +67,18 @@ export function delProductItem(databaseId) {
     url: managerUrl.removeUrl + '/' + parseStrEmpty(databaseId),
     method: 'delete'
   })
+}
+
+
+// 状态【请填写功能名称】修改
+export function changeProductStatus(id , status) {
+    const data = {
+        id ,
+        status
+    }
+    return request({
+        url: managerUrl.statusUrl,
+        method: 'put',
+        data: data
+    })
 }

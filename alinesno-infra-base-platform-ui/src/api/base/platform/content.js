@@ -25,7 +25,7 @@ var managerUrl = {
 }
 
 // 查询数据库列表
-export function listProductItem(query) {
+export function listContent(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
@@ -34,7 +34,7 @@ export function listProductItem(query) {
 }
 
 // 查询数据库详细
-export function getProductItem(databaseId) {
+export function getContent(databaseId) {
   return request({
     url: managerUrl.detailUrl + '/' + parseStrEmpty(databaseId),
     method: 'get'
@@ -42,7 +42,7 @@ export function getProductItem(databaseId) {
 }
 
 // 新增数据库
-export function addProductItem(data) {
+export function addContent(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
@@ -51,7 +51,7 @@ export function addProductItem(data) {
 }
 
 // 修改数据库
-export function updateProductItem(data) {
+export function updateContent(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
@@ -60,7 +60,7 @@ export function updateProductItem(data) {
 }
 
 // 删除数据库
-export function delProductItem(databaseId) {
+export function delContent(databaseId) {
   return request({
     url: managerUrl.removeUrl + '/' + parseStrEmpty(databaseId),
     method: 'delete'

@@ -23,28 +23,12 @@ import java.util.Date;
 public class ServiceAskEntity extends InfraBaseEntity {
 
 	/**
-	 * 留言类型
-	 */
-	@TableField("service_type_id")
-	@ColumnType(length=255)
-	@ColumnComment("留言类型")
-	private String serviceTypeId;
-
-	/**
 	 * 创建者
 	 */
 	@TableField("creator_id")
 	@ColumnType(length=255)
 	@ColumnComment("创建者")
 	private String creatorId;
-
-	/**
-	 * 回复者
-	 */
-	@TableField("replyer_id")
-	@ColumnType(length=255)
-	@ColumnComment("回复者")
-	private String replyerId;
 
 	/**
 	 * 咨询标题
@@ -86,6 +70,27 @@ public class ServiceAskEntity extends InfraBaseEntity {
 	@ColumnType(length=255)
 	@ColumnComment("咨询地区")
 	private String creationArea;
+
+
+	/**
+	 * 留言类型
+	 */
+	@TableField("service_type_id")
+	@ColumnType(length=255)
+	@ColumnComment("留言类型")
+	private String serviceTypeId;
+
+
+
+	/**
+	 * 回复者
+	 */
+	@TableField("replyer_id")
+	@ColumnType(length=255)
+	@ColumnComment("回复者")
+	private String replyerId;
+
+
 
 	/**
 	 * 回复内容

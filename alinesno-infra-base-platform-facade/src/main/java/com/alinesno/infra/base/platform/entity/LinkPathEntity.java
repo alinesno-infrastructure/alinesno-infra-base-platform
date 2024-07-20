@@ -52,11 +52,11 @@ public class LinkPathEntity extends InfraBaseEntity {
 	private String linkDesc;
 
 	/**
-	 * 链接打开状态
+	 * 链接打开方式
 	 */
 	@TableField("link_target")
 	@ColumnType(length=255)
-	@ColumnComment("链接打开状态")
+	@ColumnComment("链接打开方式")
 	private String linkTarget;
 
 	/**

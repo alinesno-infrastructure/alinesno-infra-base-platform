@@ -25,7 +25,7 @@ var managerUrl = {
 }
 
 // 查询数据库列表
-export function listApplication(query) {
+export function listLinkPath(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
@@ -34,7 +34,7 @@ export function listApplication(query) {
 }
 
 // 查询数据库详细
-export function getApplication(databaseId) {
+export function getLinkPath(databaseId) {
   return request({
     url: managerUrl.detailUrl + '/' + parseStrEmpty(databaseId),
     method: 'get'
@@ -42,7 +42,7 @@ export function getApplication(databaseId) {
 }
 
 // 新增数据库
-export function addApplication(data) {
+export function addLinkPath(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
@@ -51,7 +51,7 @@ export function addApplication(data) {
 }
 
 // 修改数据库
-export function updateApplication(data) {
+export function updateLinkPath(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
@@ -60,9 +60,22 @@ export function updateApplication(data) {
 }
 
 // 删除数据库
-export function delApplication(databaseId) {
+export function delLinkPath(databaseId) {
   return request({
     url: managerUrl.removeUrl + '/' + parseStrEmpty(databaseId),
     method: 'delete'
   })
+}
+
+// 状态【请填写功能名称】修改
+export function changeLinkStatus(id , status) {
+    const data = {
+        id ,
+        status
+    }
+    return request({
+        url: managerUrl.statusUrl,
+        method: 'put',
+        data: data
+    })
 }

@@ -4,11 +4,17 @@
          <!--应用数据-->
          <el-col :span="24" :xs="24">
             <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="100px">
-               <el-form-item label="应用名称" prop="dbName">
-                  <el-input v-model="queryParams.dbName" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
+               <el-form-item label="父类型" prop="parentId">
+                 <el-select v-model="queryParams.parentId" placeholder="请选择父类型"  style="width:360px" clearable  filterable @keyup.enter="handleQuery" >
+                   <el-option  v-for="item in ProductTypeList"
+                               :key="item.id"
+                               :label="item.name"
+                               :value="item.id">
+                   </el-option>
+                 </el-select>
                </el-form-item>
-               <el-form-item label="应用名称" prop="dbName">
-                  <el-input v-model="queryParams['condition[dbName|like]']" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
+               <el-form-item label="名称" prop="name">
+                  <el-input v-model="queryParams['condition[name|like]']" placeholder="请输入类型名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
                </el-form-item>
                <el-form-item>
                   <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
@@ -31,20 +37,31 @@
                <right-toolbar v-model:showSearch="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
             </el-row>
 
-            <el-table v-loading="loading" :data="ProductItemList" @selection-change="handleSelectionChange">
+            <el-table v-loading="loading" :data="ProductTypeList" @selection-change="handleSelectionChange">
                <el-table-column type="selection" width="50" align="center" />
-               <el-table-column label="图标" align="center" with="80" key="status" v-if="columns[5].visible">
+               <el-table-column label="图标" align="center" with="80" key="status" v-if="columns[2].visible">
                </el-table-column>
 
                <!-- 业务字段-->
-               <el-table-column label="应用名称" align="center" key="ProductItemName" prop="ProductItemName" v-if="columns[0].visible" />
-               <el-table-column label="应用描述" align="center" key="intro" prop="intro" v-if="columns[1].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="授权地址" align="center" key="allow_url" prop="allowUrl" v-if="columns[2].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="类型" align="center" key="dbType" prop="dbType" v-if="columns[3].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="是否公开" align="center" key="isPublic" prop="isPublic" v-if="columns[4].visible" width="120" />
-               <el-table-column label="状态" align="center" key="status" v-if="columns[5].visible" />
+               <el-table-column label="类型名称" align="center" key="name" prop="name" v-if="columns[0].visible" />
+               <el-table-column label="父类型名称" align="center" key="parentId" prop="parentId" v-if="columns[1].visible" >
+                 <template #default="scope">
+                   <span>{{ filterType(scope.row.parentId ) }}</span>
+                 </template>
+               </el-table-column>
+               <el-table-column label="类型描述" align="center" key="typeDescribe" prop="typeDescribe" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[3].visible">
+                  <template #default="scope">
+                    <el-switch
+                        v-model="scope.row.hasStatus"
+                        :active-value=0
+                        :inactive-value=1
+                        @change="handleStatusChange(scope.row)"
+                    ></el-switch>
+                  </template>
+               </el-table-column>
 
-               <el-table-column label="添加时间" align="center" prop="addTime" v-if="columns[6].visible" width="160">
+               <el-table-column label="添加时间" align="center" prop="addTime" v-if="columns[4].visible" width="160">
                   <template #default="scope">
                      <span>{{ parseTime(scope.row.addTime) }}</span>
                   </template>
@@ -71,99 +88,30 @@
 
       <!-- 添加或修改应用配置对话框 -->
       <el-dialog :title="title" v-model="open" width="900px" append-to-body>
-         <el-form :model="form" :rules="rules" ref="databaseRef" label-width="100px">
+         <el-form :model="form" :rules="rules" ref="ProductTypeRef" label-width="100px">
             <el-row>
+              <el-col :span="24">
+                <el-form-item label="父类型" prop="parentId">
+                  <el-select v-model="form.parentId" placeholder="请选择父类型"  style="width:360px" clearable  filterable >
+                    <el-option  v-for="item in ProductTypeList"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+
                <el-col :span="24">
-                  <el-form-item label="应用图标" prop="logo">
-                     <!-- <el-input v-model="form.logo" placeholder="请输入应用图标" maxlength="255" /> -->
-
-                     <el-upload action="#" list-type="picture-card" :auto-upload="false">
-                           <el-icon><Plus /></el-icon>
-
-                           <template #file="{ file }">
-                              <div>
-                              <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
-                              <span class="el-upload-list__item-actions">
-                                 <span
-                                    class="el-upload-list__item-preview"
-                                    @click="handlePictureCardPreview(file)"
-                                 >
-                                    <el-icon><zoom-in /></el-icon>
-                                 </span>
-                                 <span
-                                    v-if="!disabled"
-                                    class="el-upload-list__item-delete"
-                                    @click="handleDownload(file)"
-                                 >
-                                    <el-icon><Download /></el-icon>
-                                 </span>
-                                 <span
-                                    v-if="!disabled"
-                                    class="el-upload-list__item-delete"
-                                    @click="handleRemove(file)"
-                                 >
-                                    <el-icon><Delete /></el-icon>
-                                 </span>
-                              </span>
-                              </div>
-                           </template>
-                        </el-upload>
-
-                  </el-form-item>
-               </el-col>
-               <el-col :span="24">
-                  <el-form-item label="应用名称" prop="ProductItemName">
-                     <el-input v-model="form.ProductItemName" placeholder="请输入应用名称" maxlength="50" />
+                  <el-form-item label="类型名称" prop="name">
+                     <el-input v-model="form.name" placeholder="请输入产品类型名称" maxlength="50" />
                   </el-form-item>
                </el-col>
             </el-row>
             <el-row>
                <el-col :span="24">
-                  <el-form-item label="应用介绍" prop="intro">
-                     <el-input v-model="form.intro" type="textarea" placeholder="请输入应用介绍" maxlength="255" />
-                  </el-form-item>
-               </el-col>
-            </el-row>
-            <el-row>
-               <el-col :span="24">
-                  <el-form-item label="授权地址" prop="allowUrl">
-                     <el-input v-model="form.allowUrl" placeholder="请输入授权地址" maxlength="255" />
-                  </el-form-item>
-               </el-col>
-
-               <el-col :span="24">
-                  <el-form-item label="应用状态" prop="status">
-                     <el-radio-group v-model="form.status">
-                        <el-radio
-                           v-for="dict in sys_normal_disable"
-                           :key="dict.value"
-                           :label="dict.value"
-                        >{{ dict.label }}</el-radio>
-                     </el-radio-group>
-                  </el-form-item>
-               </el-col>
-
-               <el-col :span="24">
-                  <!-- <el-form-item label="是否公开" prop="isPublic">
-                     <el-input v-model="form.isPublic" placeholder="请输入是否公开" maxlength="1" />
-                  </el-form-item> -->
-
-                  <el-form-item label="是否公开" prop="isPublic">
-                     <el-radio-group v-model="form.isPublic">
-                        <el-radio
-                           v-for="dict in sys_normal_disable"
-                           :key="dict.value"
-                           :label="dict.value"
-                        >{{ dict.label }}</el-radio>
-                     </el-radio-group>
-                  </el-form-item>
-               </el-col>
-            </el-row>
-
-            <el-row>
-               <el-col :span="24">
-                  <el-form-item label="备注" prop="description">
-                     <el-input v-model="form.description"  placeholder="请输入应用备注"></el-input>
+                  <el-form-item label="类型描述" prop="typeDescribe">
+                     <el-input v-model="form.typeDescribe" type="textarea" placeholder="请输入产品类型描述" maxlength="255" />
                   </el-form-item>
                </el-col>
             </el-row>
@@ -182,19 +130,20 @@
 <script setup name="ProductItem">
 
 import {
-   listProductItem,
-   delProductItem,
-   getProductItem,
-   updateProductItem,
-   addProductItem
-} from "@/api/base/platform/product";
+   listProductType,
+   delProductType,
+   getProductType,
+   updateProductType,
+   addProductType,
+   changeProductStatus
+} from "@/api/base/platform/productType";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
 const { sys_normal_disable, sys_user_sex } = proxy.useDict("sys_normal_disable", "sys_user_sex");
 
 // 定义变量
-const ProductItemList = ref([]);
+const ProductTypeList = ref([]);
 const open = ref(false);
 const loading = ref(true);
 const showSearch = ref(true);
@@ -209,13 +158,11 @@ const roleOptions = ref([]);
 
 // 列显隐信息
 const columns = ref([
-   { key: 0, label: `应用名称`, visible: true },
-   { key: 1, label: `应用描述`, visible: true },
-   { key: 2, label: `授权地址`, visible: true },
-   { key: 3, label: `类型`, visible: true },
-   { key: 4, label: `是否公开`, visible: true },
-   { key: 5, label: `状态`, visible: true },
-   { key: 6, label: `添加时间`, visible: true }
+   { key: 0, label: `类型名称`, visible: true },
+   { key: 1, label: `父类型`, visible: true },
+   { key: 2, label: `类型描述`, visible: true },
+   { key: 3, label: `状态`, visible: true },
+   { key: 4, label: `添加时间`, visible: true }
 ]);
 
 const data = reactive({
@@ -223,27 +170,31 @@ const data = reactive({
    queryParams: {
       pageNum: 1,
       pageSize: 10,
-      dbName: undefined,
-      dbDesc: undefined
+      name: undefined,
+      typeDescribe: undefined,
+      parentId: undefined,
+      sortNumber: undefined,
+      remark: undefined
    },
    rules: {
-      dbName: [{ required: true, message: "名称不能为空", trigger: "blur" }] , 
-      jdbcUrl: [{ required: true, message: "连接不能为空", trigger: "blur" }],
-      dbType: [{ required: true, message: "类型不能为空", trigger: "blur" }] , 
-      dbUsername: [{ required: true , message: "用户名不能为空", trigger: "blur"}],
-      dbPasswd: [{ required: true, message: "密码不能为空", trigger: "blur" }] , 
-      dbDesc: [{ required: true, message: "备注不能为空", trigger: "blur" }] 
+      name: [{ required: true, message: "类型名称不能为空", trigger: "blur" }] ,
+      typeDescribe: [{ required: true, message: "类型描述不能为空", trigger: "blur" }] ,
+      parentId: [{ required: false, message: "父类型不能为空", trigger: "blur" }],
+      sortNumber: [{ required: false, message: "排序不能为空", trigger: "blur" }] ,
+      remark: [{ required: false, message: "备注不能为空", trigger: "blur" }]
    }
 });
+
+
 
 const { queryParams, form, rules } = toRefs(data);
 
 /** 查询应用列表 */
 function getList() {
    loading.value = true;
-   listProductItem(proxy.addDateRange(queryParams.value, dateRange.value)).then(res => {
+   listProductType(proxy.addDateRange(queryParams.value, dateRange.value)).then(res => {
       loading.value = false;
-      ProductItemList.value = res.rows;
+      ProductTypeList.value = res.rows;
       total.value = res.total;
    });
 };
@@ -264,9 +215,9 @@ function resetQuery() {
 };
 /** 删除按钮操作 */
 function handleDelete(row) {
-   const ProductItemIds = row.id || ids.value;
-   proxy.$modal.confirm('是否确认删除应用编号为"' + ProductItemIds + '"的数据项？').then(function () {
-      return delProductItem(ProductItemIds);
+   const tmpIds = row.id || ids.value;
+   proxy.$modal.confirm('是否确认删除应用编号为"' + tmpIds + '"的数据项？').then(function () {
+      return delProductType(tmpIds);
    }).then(() => {
       getList();
       proxy.$modal.msgSuccess("删除成功");
@@ -284,15 +235,13 @@ function handleSelectionChange(selection) {
 function reset() {
    form.value = {
       id: undefined,
-      deptId: undefined,
-      ProductItemName: undefined,
-      nickName: undefined,
-      password: undefined,
-      phonenumber: undefined,
-      status: "0",
+      name: undefined,
+      typeDescribe: undefined,
+      sortNumber: undefined,
+      parentId: undefined,
       remark: undefined,
    };
-   proxy.resetForm("databaseRef");
+   proxy.resetForm("ProductTypeRef");
 };
 /** 取消按钮 */
 function cancel() {
@@ -311,7 +260,7 @@ function handleAdd() {
 function handleUpdate(row) {
    reset();
    const ProductItemId = row.id || ids.value;
-   getProductItem(ProductItemId).then(response => {
+   getProductType(ProductItemId).then(response => {
       form.value = response.data;
       open.value = true;
       title.value = "修改应用";
@@ -320,16 +269,16 @@ function handleUpdate(row) {
 
 /** 提交按钮 */
 function submitForm() {
-   proxy.$refs["databaseRef"].validate(valid => {
+   proxy.$refs["ProductTypeRef"].validate(valid => {
       if (valid) {
-         if (form.value.ProductItemId != undefined) {
-            updateProductItem(form.value).then(response => {
+         if (form.value.id != undefined) {
+            updateProductType(form.value).then(response => {
                proxy.$modal.msgSuccess("修改成功");
                open.value = false;
                getList();
             });
          } else {
-            addProductItem(form.value).then(response => {
+            addProductType(form.value).then(response => {
                proxy.$modal.msgSuccess("新增成功");
                open.value = false;
                getList();
@@ -338,6 +287,30 @@ function submitForm() {
       }
    });
 };
+
+/** 状态修改**/
+function handleStatusChange(row) {
+  return changeProductStatus(row.id, row.hasStatus).then(response=>{
+    if(response.code == 200){
+      proxy.$modal.msgSuccess("操作成功");
+      getList();
+    }
+  });
+}
+
+function filterType(parentId){
+  var parentName = '' ;
+  ProductTypeList.value.filter((item) => {
+    if ( item.id === parentId)
+    {
+      parentName = item.name
+    }
+  });
+
+  return parentName ;
+
+}
+
 
 getList();
 

@@ -4,11 +4,11 @@
          <!--应用数据-->
          <el-col :span="24" :xs="24">
             <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="100px">
-               <el-form-item label="应用名称" prop="dbName">
-                  <el-input v-model="queryParams.dbName" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
+               <el-form-item label="应用名称" prop="name">
+                  <el-input v-model="queryParams.name" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
                </el-form-item>
-               <el-form-item label="应用名称" prop="dbName">
-                  <el-input v-model="queryParams['condition[dbName|like]']" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
+               <el-form-item label="应用介绍" prop="productBrief">
+                  <el-input v-model="queryParams['condition[productBrief|like]']" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
                </el-form-item>
                <el-form-item>
                   <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
@@ -37,12 +37,31 @@
                </el-table-column>
 
                <!-- 业务字段-->
-               <el-table-column label="应用名称" align="center" key="ProductItemName" prop="ProductItemName" v-if="columns[0].visible" />
-               <el-table-column label="应用描述" align="center" key="intro" prop="intro" v-if="columns[1].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="授权地址" align="center" key="allow_url" prop="allowUrl" v-if="columns[2].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="类型" align="center" key="dbType" prop="dbType" v-if="columns[3].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="是否公开" align="center" key="isPublic" prop="isPublic" v-if="columns[4].visible" width="120" />
-               <el-table-column label="状态" align="center" key="status" v-if="columns[5].visible" />
+               <el-table-column label="应用名称" align="center" key="name" prop="name" v-if="columns[0].visible" />
+               <el-table-column label="应用描述" align="center" key="productBrief" prop="productBrief" v-if="columns[1].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="授权地址" align="center" key="allow_url" prop="linkPath" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="应用状态" align="center" key="prodStatus" prop="isPublic"  v-if="columns[3].visible" >
+                 <template #default="scope">
+                   <span>{{ prodStatusTrans(scope.row.prodStatus ) }}</span>
+                 </template>
+               </el-table-column>
+
+               <el-table-column label="是否公开" align="center" key="isPublic" prop="isPublic" v-if="columns[4].visible" >
+                  <template #default="scope">
+                    <span>{{ isPublicTrans(scope.row.isPublic ) }}</span>
+                  </template>
+               </el-table-column>
+
+              <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[5].visible">
+                <template #default="scope">
+                  <el-switch
+                      v-model="scope.row.hasStatus"
+                      :active-value=0
+                      :inactive-value=1
+                      @change="handleStatusChange(scope.row)"
+                  ></el-switch>
+                </template>
+              </el-table-column>
 
                <el-table-column label="添加时间" align="center" prop="addTime" v-if="columns[6].visible" width="160">
                   <template #default="scope">
@@ -71,7 +90,7 @@
 
       <!-- 添加或修改应用配置对话框 -->
       <el-dialog :title="title" v-model="open" width="900px" append-to-body>
-         <el-form :model="form" :rules="rules" ref="databaseRef" label-width="100px">
+         <el-form :model="form" :rules="rules" ref="productItemRef" label-width="100px">
             <el-row>
                <el-col :span="24">
                   <el-form-item label="应用图标" prop="logo">
@@ -112,58 +131,51 @@
                   </el-form-item>
                </el-col>
                <el-col :span="24">
-                  <el-form-item label="应用名称" prop="ProductItemName">
-                     <el-input v-model="form.ProductItemName" placeholder="请输入应用名称" maxlength="50" />
+                  <el-form-item label="应用名称" prop="name">
+                     <el-input v-model="form.name" placeholder="请输入应用名称" maxlength="50" />
                   </el-form-item>
                </el-col>
             </el-row>
             <el-row>
                <el-col :span="24">
-                  <el-form-item label="应用介绍" prop="intro">
-                     <el-input v-model="form.intro" type="textarea" placeholder="请输入应用介绍" maxlength="255" />
+                  <el-form-item label="应用介绍" prop="productBrief">
+                     <el-input v-model="form.productBrief" type="textarea" placeholder="请输入应用介绍" maxlength="255" />
                   </el-form-item>
                </el-col>
             </el-row>
             <el-row>
                <el-col :span="24">
-                  <el-form-item label="授权地址" prop="allowUrl">
-                     <el-input v-model="form.allowUrl" placeholder="请输入授权地址" maxlength="255" />
+                  <el-form-item label="授权地址" prop="linkPath">
+                     <el-input v-model="form.linkPath" placeholder="请输入授权地址" maxlength="255" />
                   </el-form-item>
                </el-col>
 
                <el-col :span="24">
-                  <el-form-item label="应用状态" prop="status">
-                     <el-radio-group v-model="form.status">
+                  <el-form-item label="应用状态" prop="prodStatus">
+                     <el-radio-group v-model="form.prodStatus">
                         <el-radio
-                           v-for="dict in sys_normal_disable"
-                           :key="dict.value"
-                           :label="dict.value"
-                        >{{ dict.label }}</el-radio>
+                           v-for="item in prodStatusOptions"
+                           :key="item.key"
+                           :label="item.key"
+                        >{{ item.label }}</el-radio>
                      </el-radio-group>
                   </el-form-item>
                </el-col>
 
                <el-col :span="24">
-                  <!-- <el-form-item label="是否公开" prop="isPublic">
-                     <el-input v-model="form.isPublic" placeholder="请输入是否公开" maxlength="1" />
-                  </el-form-item> -->
-
-                  <el-form-item label="是否公开" prop="isPublic">
-                     <el-radio-group v-model="form.isPublic">
-                        <el-radio
-                           v-for="dict in sys_normal_disable"
-                           :key="dict.value"
-                           :label="dict.value"
-                        >{{ dict.label }}</el-radio>
-                     </el-radio-group>
-                  </el-form-item>
+                 <el-form-item label="是否公开" prop="isPublic"  >
+                   <el-radio-group v-model="form.isPublic" class="myradiogroup"  @change="$forceUpdate()">
+                     <el-radio :label=1>公开</el-radio>
+                     <el-radio :label=0>不公开</el-radio>
+                   </el-radio-group>
+                 </el-form-item>
                </el-col>
             </el-row>
 
             <el-row>
                <el-col :span="24">
-                  <el-form-item label="备注" prop="description">
-                     <el-input v-model="form.description"  placeholder="请输入应用备注"></el-input>
+                  <el-form-item label="备注" prop="productDescribe">
+                     <el-input v-model="form.productDescribe" type="textarea"  placeholder="请输入应用备注"></el-input>
                   </el-form-item>
                </el-col>
             </el-row>
@@ -182,16 +194,16 @@
 <script setup name="ProductItem">
 
 import {
-   listProductItem,
-   delProductItem,
-   getProductItem,
-   updateProductItem,
-   addProductItem
+  listProductItem,
+  delProductItem,
+  getProductItem,
+  updateProductItem,
+  addProductItem,  changeProductStatus
 } from "@/api/base/platform/product";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
-const { sys_normal_disable, sys_user_sex } = proxy.useDict("sys_normal_disable", "sys_user_sex");
+/*const { sys_normal_disable, sys_user_sex } = proxy.useDict("sys_normal_disable", "sys_user_sex");*/
 
 // 定义变量
 const ProductItemList = ref([]);
@@ -212,7 +224,7 @@ const columns = ref([
    { key: 0, label: `应用名称`, visible: true },
    { key: 1, label: `应用描述`, visible: true },
    { key: 2, label: `授权地址`, visible: true },
-   { key: 3, label: `类型`, visible: true },
+   { key: 3, label: `应用状态`, visible: true },
    { key: 4, label: `是否公开`, visible: true },
    { key: 5, label: `状态`, visible: true },
    { key: 6, label: `添加时间`, visible: true }
@@ -223,20 +235,25 @@ const data = reactive({
    queryParams: {
       pageNum: 1,
       pageSize: 10,
-      dbName: undefined,
-      dbDesc: undefined
+      name: undefined,
+      productBrief: undefined
    },
    rules: {
-      dbName: [{ required: true, message: "名称不能为空", trigger: "blur" }] , 
-      jdbcUrl: [{ required: true, message: "连接不能为空", trigger: "blur" }],
-      dbType: [{ required: true, message: "类型不能为空", trigger: "blur" }] , 
-      dbUsername: [{ required: true , message: "用户名不能为空", trigger: "blur"}],
-      dbPasswd: [{ required: true, message: "密码不能为空", trigger: "blur" }] , 
-      dbDesc: [{ required: true, message: "备注不能为空", trigger: "blur" }] 
-   }
+      name: [{ required: true, message: "应用名称不能为空", trigger: "blur" }] ,
+      productBrief: [{ required: true, message: "应用介绍不能为空", trigger: "blur" }],
+      linkPath: [{ required: true, message: "授权地址不能为空", trigger: "blur" }] ,
+      prodStatus: [{ required: true , message: "应用状态不能为空", trigger: "blur"}],
+      isPublic: [{ required: true, message: "是否公开不能为空", trigger: "blur" }] ,
+      productDescribe: [{ required: false, message: "备注不能为空", trigger: "blur" }]
+   },
+   prodStatusOptions: [
+    {key: "normal", label: "正常",cantSelect: false},
+    {key: "internal", label: "内测",cantSelect: false},
+    {key: "public", label: "公测",cantSelect: false},
+  ],
 });
 
-const { queryParams, form, rules } = toRefs(data);
+const { queryParams, form, rules, prodStatusOptions } = toRefs(data);
 
 /** 查询应用列表 */
 function getList() {
@@ -284,15 +301,14 @@ function handleSelectionChange(selection) {
 function reset() {
    form.value = {
       id: undefined,
-      deptId: undefined,
-      ProductItemName: undefined,
-      nickName: undefined,
-      password: undefined,
-      phonenumber: undefined,
-      status: "0",
-      remark: undefined,
+      name: undefined,
+      productBrief: undefined,
+      linkPath: undefined,
+      prodStatus: undefined,
+      isPublic: undefined,
+      productDescribe: undefined,
    };
-   proxy.resetForm("databaseRef");
+   proxy.resetForm("productItemRef");
 };
 /** 取消按钮 */
 function cancel() {
@@ -320,9 +336,9 @@ function handleUpdate(row) {
 
 /** 提交按钮 */
 function submitForm() {
-   proxy.$refs["databaseRef"].validate(valid => {
+   proxy.$refs["productItemRef"].validate(valid => {
       if (valid) {
-         if (form.value.ProductItemId != undefined) {
+         if (form.value.id != undefined) {
             updateProductItem(form.value).then(response => {
                proxy.$modal.msgSuccess("修改成功");
                open.value = false;
@@ -338,6 +354,43 @@ function submitForm() {
       }
    });
 };
+
+function isPublicTrans(value) {
+  switch (value) {
+    case 0:
+      return "不公开";
+    case 1:
+      return "公开";
+    default:
+      return "公开";
+  }
+}
+
+function prodStatusTrans(value) {
+  switch (value) {
+    case "normal":
+      return "正常";
+    case "internal":
+      return "内测";
+    case "public":
+      return "公测";
+    default:
+      return "正常";
+  }
+}
+
+
+/** 状态修改**/
+function handleStatusChange(row) {
+  return changeProductStatus(row.id, row.hasStatus).then(response=>{
+    if(response.code == 200){
+      proxy.$modal.msgSuccess("操作成功");
+      getList();
+    }
+  });
+};
+
+
 
 getList();
 

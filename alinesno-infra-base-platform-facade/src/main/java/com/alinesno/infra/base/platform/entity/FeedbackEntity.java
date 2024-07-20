@@ -41,10 +41,10 @@ public class FeedbackEntity extends InfraBaseEntity {
 	/**
 	 * 问题描述
 	 */
-	@Excel(name = "问题描述")
+	@Excel(name = "建议内容")
 	@TableField("problem_desc")
 	@ColumnType(length=255)
-	@ColumnComment("问题描述")
+	@ColumnComment("建议内容")
 	private String problemDesc;
 
 	/**

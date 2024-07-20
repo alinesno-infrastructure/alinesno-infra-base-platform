@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeedbackController extends BaseController<FeedbackEntity, IFeedbackService> {
 
     @Autowired
-    private IFeedbackService service;
+    private IFeedbackService feedbackService;
 
     /**
      * 获取FeedbackEntity的DataTables数据。
@@ -52,6 +52,6 @@ public class FeedbackController extends BaseController<FeedbackEntity, IFeedback
 
     @Override
     public IFeedbackService getFeign() {
-        return this.service;
+        return this.feedbackService;
     }
 }

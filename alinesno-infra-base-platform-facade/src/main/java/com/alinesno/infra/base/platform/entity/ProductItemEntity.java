@@ -92,20 +92,20 @@ public class ProductItemEntity extends InfraBaseEntity {
 	private String linkPath;
 
 	/**
-	 * 当前状态(规划planning|研究research|生产production)
-	 */
-	@TableField("item_status")
-	@ColumnType(length=255)
-	@ColumnComment("当前状态(规划planning|研究research|生产production)")
-	private String itemStatus;
-
-	/**
 	 * 产品状态(正常normal|内测internal|公测public)
 	 */
 	@TableField("prod_status")
 	@ColumnType(length=255)
 	@ColumnComment("产品状态(正常normal|内测internal|公测public)")
-	private String prodStatus;
+	private String prodStatus = "internal";
+
+	/**
+	 * 当前状态(规划planning|研究research|生产production)
+	 */
+	@TableField("is_public")
+	@ColumnType(length=255)
+	@ColumnComment("是否公开(0不公开|1不公开)")
+	private Integer isPublic = 1;
 
 	/**
 	 * 标识状态(0启用|1禁用)
