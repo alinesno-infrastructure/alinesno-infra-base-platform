@@ -1,0 +1,67 @@
+
+--方案类型 cloudSolutionType      cloudSolutionType    solution_type --已有表
+
+--咨询管理 cloudServiceAsk     cloudServiceAsk service_ask 已有表
+
+--建议反馈 cloudFeedback       cloud Feedback  已有表
+
+--友情链接 friendLinks         cloudLinkPath  已有表
+
+--内容管理 contentManagement   cloudContent  content 已有表
+
+ProductItemEntity
+
+ProductAccessInfoEntity
+
+--产品访问    需要建表
+CREATE TABLE `product_access_info`  (
+  `account_id`       varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci      NULL DEFAULT NULL COMMENT '账户id',
+  `account_name`     varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci      NULL DEFAULT NULL   COMMENT '账户名称',
+  `product_item_id`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci      NULL DEFAULT NULL COMMENT '产品id',
+  `product_item_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci       NULL DEFAULT NULL COMMENT  '产品名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic   COMMENT '产品访问清单';
+
+
+--方案管理   solution_manage 需要建表
+CREATE TABLE `solution_manage`  (
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL   COMMENT '方案标题',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案内容',
+  `link` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT  '方案链接',
+  `solution_type_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方案类型id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic COMMENT '方案管理';
+
+--产品方案 product_solution 需要建表
+
+CREATE TABLE `product_solution`  (
+   `product_item_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品ID',
+   `solution_id`     varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL     COMMENT '方案ID'
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic COMMENT '产品方案';
+
+--产品评价 需要建表
+
+CREATE TABLE `product_judge`  (
+   `product_item_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL   COMMENT '产品ID',
+   `content`        text CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL     COMMENT '评价内容'
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic COMMENT '产品评价';
+
+--公告管理 announce_manage  需要建表
+CREATE TABLE ` announce_manage`  (
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题',
+  `content` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `file_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告附件文件地址',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic  COMMENT '公告管理';
+
+AnnounceManageEntity IAnnounceManageService  公告管理
+
+ProductJudgeEntity  IProductJudgeService     产品评价  https://blog.csdn.net/weixin_42560947/article/details/127970670
+
+ProductSolutionEntity  IProductSolutionService  产品方案
+
+SolutionManageEntity  ISolutionManageService 方案管理
+
+ProductAccessInfoEntity  IProductAccessInfoService 产品访问  productaccess
