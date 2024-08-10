@@ -5,7 +5,7 @@ export function listMenu(query) {
   return request({
     url: '/system/menu/list',
     method: 'get',
-    params: query
+    data: query
   })
 }
 
