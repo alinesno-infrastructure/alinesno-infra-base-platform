@@ -5,7 +5,7 @@ export function listType(query) {
   return request({
     url: '/system/dict/type/list',
     method: 'get',
-    params: query
+    data: query
   })
 }
 
