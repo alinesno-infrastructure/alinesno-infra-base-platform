@@ -5,7 +5,7 @@ export function listRole(query) {
   return request({
     url: '/system/role/list',
     method: 'get',
-    params: query
+    data: query
   })
 }
 
@@ -70,7 +70,7 @@ export function allocatedUserList(query) {
   return request({
     url: '/system/role/authUser/allocatedList',
     method: 'get',
-    params: query
+    data: query
   })
 }
 
@@ -79,7 +79,7 @@ export function unallocatedUserList(query) {
   return request({
     url: '/system/role/authUser/unallocatedList',
     method: 'get',
-    params: query
+    data: query
   })
 }
 
