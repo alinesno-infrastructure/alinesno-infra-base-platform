@@ -29,7 +29,7 @@ export function listSolutionManage(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
-    params: query
+    data: query
   })
 }
 
