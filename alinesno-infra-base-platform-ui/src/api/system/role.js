@@ -5,7 +5,7 @@ export function listRole(query) {
   return request({
     url: '/system/role/list',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -22,7 +22,7 @@ export function addRole(data) {
   return request({
     url: '/system/role',
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -31,7 +31,7 @@ export function updateRole(data) {
   return request({
     url: '/system/role',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -40,7 +40,7 @@ export function dataScope(data) {
   return request({
     url: '/system/role/dataScope',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -53,7 +53,7 @@ export function changeRoleStatus(roleId, status) {
   return request({
     url: '/system/role/changeStatus',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -70,7 +70,7 @@ export function allocatedUserList(query) {
   return request({
     url: '/system/role/authUser/allocatedList',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -79,7 +79,7 @@ export function unallocatedUserList(query) {
   return request({
     url: '/system/role/authUser/unallocatedList',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -88,7 +88,7 @@ export function authUserCancel(data) {
   return request({
     url: '/system/role/authUser/cancel',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
