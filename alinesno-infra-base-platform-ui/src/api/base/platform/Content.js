@@ -29,7 +29,7 @@ export function listContent(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
-    data: query
+    params: query
   })
 }
 
@@ -46,7 +46,7 @@ export function addContent(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -55,7 +55,7 @@ export function updateContent(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
-    data: data
+    params: query
   })
 }
 
