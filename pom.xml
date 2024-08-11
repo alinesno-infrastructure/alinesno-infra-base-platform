@@ -31,6 +31,8 @@
         <module>alinesno-infra-base-platform-adapter</module> <!-- 适配层 -->
         <module>alinesno-infra-base-platform-gateway</module>  <!-- 接口服务 -->
         <module>alinesno-infra-base-platform-client</module>  <!-- 对外引用 -->
+        <module>alinesno-infra-base-platform-monitor</module>  <!-- 监控检测服务  -->
+        <module>alinesno-infra-base-platform-initialize</module>  <!-- 初始化服务-->
         <module>alinesno-infra-base-platform-boot</module>  <!-- 启动服务 -->
 
         <!-- 前端服务
