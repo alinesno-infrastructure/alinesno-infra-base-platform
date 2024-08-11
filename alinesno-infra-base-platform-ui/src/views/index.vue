@@ -48,7 +48,7 @@ const currentEnvClusterObj = ref({
   appName: 'AIP平台运营管理服务',
   clusterName: '统一的平台管理和运营，用于统一平台管理'  ,
   apiServerUrl: 'http://portal.infra.linesno.com' ,
-  desc: '项目管理工具，用于任务和问题的管理跟踪服务,思想概念来自Scrum和软件工程'
+  desc: 'AIP平台运营管理服务，用于平台的产品的管理和运营服务'
 })
 
 </script>
