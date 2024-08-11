@@ -28,6 +28,14 @@ public class ProductItemEntity extends InfraBaseEntity {
 	private String name;
 
 	/**
+	 * 产品图标
+	 */
+	@TableField("icon")
+	@ColumnType(length=64)
+	@ColumnComment("产品图标")
+	private String icon;
+
+	/**
 	 * 排序
 	 */
 	@TableField("sort_number")
