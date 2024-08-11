@@ -3,7 +3,6 @@ package com.alinesno.infra.common.web.adapter.login.controller;
 import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.web.adapter.dto.LoginBodyDto;
 import com.alinesno.infra.common.web.adapter.dto.menus.Menu;
-import com.alinesno.infra.common.web.adapter.dto.menus.Meta;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -136,14 +135,6 @@ public class CommonLoginController {
                             new Menu("Dashboard", "index", false, false , "dashboard", new Menu.Meta("概览", "dashboard", false, null))
                         )) ;
 
-                // 应用管理
-//                Menu m2 = new Menu("ProductItem", "/ProductItem", false, "noRedirect", "Layout" , true , new Menu.Meta("应用管理", "link", false, null),
-//                        List.of(
-//                                new Menu("应用列表", "ProductItem/list", false, false, "ProductItemList",  new Menu.Meta("应用列表", "link", false, null)),
-//                                new Menu("用户应用", "ProductItem/user", false, false, "userProductItems",  new Menu.Meta("用户应用", "list", false, null)),
-//                                new Menu("收藏应用", "ProductItem/favorite", false, false, "favoriteProductItems",  new Menu.Meta("收藏应用", "monitor", false, null))
-//                       )) ;
-
                 // 产品管理
                 Menu m3 = new Menu("Product", "/product", false, "noRedirect", "Layout" , true , new Menu.Meta("产品管理", "redis", false, null),
                         List.of(
@@ -155,30 +146,6 @@ public class CommonLoginController {
                                 new Menu("方案类型", "base/platform/solutiontype/list", false, false, "solutiontype",  new Menu.Meta("方案类型", "pdf", false, null))
                         )) ;
 
-
-              /*  // 账号管理
-                Menu m5 = new Menu("Account", "/account", false, "noRedirect", "Layout" , true ,  new Menu.Meta("账号管理", "number", false, null),
-                        List.of(
-                                new Menu("用户列表", "base/platform/account/list", false, false, "accountList",  new Menu.Meta("用户列表", "phone", false, null)),
-                                new Menu("用户画像", "base/platform/account/profile", false, false, "accountProfile",  new Menu.Meta("用户画像", "number", false, null))
-                        ));*/
-
-        /*        // 案例管理
-                Menu m6 = new Menu("Case", "/case", false, "noRedirect", "Layout" , true ,  new Menu.Meta("案例管理", "time", false, null),
-                        List.of(
-                                new Menu("案例列表", "base/platform/case/list", false, false, "caseList",  new Menu.Meta("案例列表", "link", false, null)),
-                                new Menu("案例类型", "base/platform/case/types", false, false, "caseTypes",  new Menu.Meta("案例类型", "list", false, null)),
-                                new Menu("合作伙伴", "base/platform/case/partner", false, false, "partners",  new Menu.Meta("合作伙伴", "lock", false, null))
-                        ));
-
-                // 文档教程
-                Menu m7 = new Menu("Document", "/document", false, "noRedirect", "Layout" , true ,  new Menu.Meta("文档教程", "question", false, null),
-                        List.of(
-                                new Menu("教程管理", "base/platform/tutorial/management", false, false, "tutorialManagement",  new Menu.Meta("教程管理", "question", false, null)),
-                                new Menu("教程类型", "base/platform/tutorial/types", false, false, "tutorialTypes",  new Menu.Meta("教程类型", "job", false, null)),
-                                new Menu("服务支持", "base/platform/tutorial/support", false, false, "serviceSupport",  new Menu.Meta("服务支持", "rate", false, null))
-                        ));*/
-
                 // 咨询服务
                 Menu m8 = new Menu("Services", "/services", false, "noRedirect", "Layout" , true ,  new Menu.Meta("咨询服务", "time", false, null),
                         List.of(
@@ -187,14 +154,12 @@ public class CommonLoginController {
                                 new Menu("咨询管理", "base/platform/serviceask/list", false, false, "serviceask", new Menu.Meta("咨询管理", "time", false, null))
                         ));
 
-
-
                 // 安全审计
-  /*              Menu m9 =  new Menu("Audit", "/audit", false, "noRedirect", "Layout" , true ,  new Menu.Meta("安全审计", "log", false, null),
+                Menu m9 =  new Menu("Audit", "/audit", false, "noRedirect", "Layout" , true ,  new Menu.Meta("安全审计", "log", false, null),
                         List.of(
                                 new Menu("操作日志", "base/platform/audit/operation-logs", false, false, "operationLogs",  new Menu.Meta("操作日志", "log", false, null)),
                                 new Menu("访问日志", "base/platform/audit/access-logs", false, false, "accessLogs",  new Menu.Meta("访问日志", "shopping", false, null))
-                        ));*/
+                        ));
 
                 // 内容管理
                 Menu m10 = new Menu("Content", "/content", false, "noRedirect", "Layout" , true ,  new Menu.Meta("内容管理", "shopping", false, null),
@@ -208,14 +173,9 @@ public class CommonLoginController {
         // 将所有菜单存储在一个列表中
         List<Menu> menus = List.of(
                 m1,
-//                m2,
                 m3,
-//                m4,
-            /*    m5,
-                m6,
-                m7,*/
                 m8,
-/*                m9,*/
+                m9,
                 m10
         );
 
