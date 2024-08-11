@@ -14,7 +14,7 @@ export function login(username, password, code, uuid) {
       isToken: false
     },
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -68,7 +68,7 @@ export function register(data) {
       isToken: false
     },
     method: 'post',
-    data: data
+    params: query
   })
 }
 
