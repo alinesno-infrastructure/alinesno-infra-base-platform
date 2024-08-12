@@ -5,7 +5,7 @@ export function listData(query) {
   return request({
     url: '/system/dict/data/list',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -30,7 +30,7 @@ export function addData(data) {
   return request({
     url: '/system/dict/data',
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -39,7 +39,7 @@ export function updateData(data) {
   return request({
     url: '/system/dict/data',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
