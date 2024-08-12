@@ -25,11 +25,11 @@ var managerUrl = {
 }
 
 // 查询数据库列表
-export function listProductType(data) {
+export function listProductType(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -47,7 +47,7 @@ export function addProductType(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -57,7 +57,7 @@ export function updateProductType(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -80,6 +80,6 @@ export function changeProductStatus(id , status) {
     return request({
         url: managerUrl.statusUrl,
         method: 'put',
-        data: data
+        params: query
     })
 }
