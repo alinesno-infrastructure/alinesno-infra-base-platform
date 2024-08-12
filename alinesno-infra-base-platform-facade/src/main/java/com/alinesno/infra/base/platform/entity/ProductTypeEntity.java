@@ -59,7 +59,7 @@ public class ProductTypeEntity extends InfraBaseEntity {
 	@TableField("parent_id")
 	@ColumnType(length=255)
 	@ColumnComment("父类id")
-	private String parentId;
+	private Long parentId;
 
 	/**
 	 * 备注
