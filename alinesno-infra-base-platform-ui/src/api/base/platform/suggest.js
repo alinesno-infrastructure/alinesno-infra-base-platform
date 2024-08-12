@@ -28,7 +28,7 @@ export function listSuggest(query) {
     return request({
         url: managerUrl.datatables ,
         method: 'post',
-        data: query
+        params: query
     })
 }
 
@@ -48,7 +48,7 @@ export function addSuggest(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -58,7 +58,7 @@ export function updateSuggest(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -80,6 +80,6 @@ export function changeSuggestStatus(id , status) {
     return request({
         url: managerUrl.statusUrl,
         method: 'put',
-        data: data
+        params: query
     })
 }
