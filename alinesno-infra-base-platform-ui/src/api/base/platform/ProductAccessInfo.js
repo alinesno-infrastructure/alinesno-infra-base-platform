@@ -29,7 +29,7 @@ export function listProductAccessInfo(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
-    data: query
+    params: query
   })
 }
 
@@ -47,7 +47,7 @@ export function addProductAccessInfo(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -57,7 +57,7 @@ export function updateProductAccessInfo(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -79,6 +79,6 @@ export function changeProductAccessInfoStatus(id , status) {
     return request({
         url: managerUrl.statusUrl,
         method: 'put',
-        data: data
+        params: query
     })
 }
