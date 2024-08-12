@@ -44,6 +44,11 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.alinesno.infra.base</groupId>
+            <artifactId>alinesno-infra-base-platform-initialize</artifactId>
+            <version>${revision}</version>
+        </dependency>
 
     </dependencies>
 
