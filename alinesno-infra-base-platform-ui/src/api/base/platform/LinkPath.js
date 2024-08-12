@@ -29,7 +29,7 @@ export function listLinkPath(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
-    data: query
+    params: query
   })
 }
 
@@ -46,7 +46,7 @@ export function addLinkPath(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -55,7 +55,7 @@ export function updateLinkPath(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -76,6 +76,6 @@ export function changeLinkStatus(id , status) {
     return request({
         url: managerUrl.statusUrl,
         method: 'put',
-        data: data
+        params: query
     })
 }
