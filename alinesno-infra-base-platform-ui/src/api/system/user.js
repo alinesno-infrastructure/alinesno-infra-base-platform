@@ -6,7 +6,7 @@ export function listUser(query) {
   return request({
     url: '/system/user/list',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -23,7 +23,7 @@ export function addUser(data) {
   return request({
     url: '/system/user',
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -32,7 +32,7 @@ export function updateUser(data) {
   return request({
     url: '/system/user',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -53,7 +53,7 @@ export function resetUserPwd(userId, password) {
   return request({
     url: '/system/user/resetPwd',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -66,7 +66,7 @@ export function changeUserStatus(userId, status) {
   return request({
     url: '/system/user/changeStatus',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -83,7 +83,7 @@ export function updateUserProfile(data) {
   return request({
     url: '/system/user/profile',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
@@ -105,7 +105,7 @@ export function uploadAvatar(data) {
   return request({
     url: '/system/user/profile/avatar',
     method: 'post',
-    data: data
+    params: query
   })
 }
 
