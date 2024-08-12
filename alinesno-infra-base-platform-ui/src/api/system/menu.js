@@ -5,7 +5,7 @@ export function listMenu(query) {
   return request({
     url: '/system/menu/list',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -38,7 +38,7 @@ export function addMenu(data) {
   return request({
     url: '/system/menu',
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -47,7 +47,7 @@ export function updateMenu(data) {
   return request({
     url: '/system/menu',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
