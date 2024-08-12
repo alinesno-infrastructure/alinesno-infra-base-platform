@@ -5,7 +5,7 @@ export function listType(query) {
   return request({
     url: '/system/dict/type/list',
     method: 'get',
-    data: query
+    params: query
   })
 }
 
@@ -22,7 +22,7 @@ export function addType(data) {
   return request({
     url: '/system/dict/type',
     method: 'post',
-    data: data
+    params: query
   })
 }
 
@@ -31,7 +31,7 @@ export function updateType(data) {
   return request({
     url: '/system/dict/type',
     method: 'put',
-    data: data
+    params: query
   })
 }
 
