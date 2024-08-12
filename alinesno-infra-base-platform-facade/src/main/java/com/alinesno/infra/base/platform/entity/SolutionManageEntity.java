@@ -7,6 +7,7 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * 这是一个用于存储方案管理的实体类
@@ -14,6 +15,7 @@ import lombok.EqualsAndHashCode;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
 @TableName("solution_manage")
 @Data
