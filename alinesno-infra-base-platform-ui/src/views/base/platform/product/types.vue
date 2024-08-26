@@ -39,17 +39,17 @@
 
             <el-table v-loading="loading" :data="ProductTypeList" @selection-change="handleSelectionChange">
                <el-table-column type="selection" width="50" align="center" />
-               <el-table-column label="图标" align="center" with="80" key="status" v-if="columns[2].visible">
+               <el-table-column label="图标" align="center" width="80" key="status" v-if="columns[2].visible">
+                 <template #default="scope">
+                    <span style="font-size:25px;color:#3b5998;">
+                       <i :class="scope.row.icon"></i>
+                    </span>
+                 </template>
                </el-table-column>
 
                <!-- 业务字段-->
-               <el-table-column label="类型名称" align="center" key="name" prop="name" v-if="columns[0].visible" />
-               <el-table-column label="父类型名称" align="center" key="parentId" prop="parentId" v-if="columns[1].visible" >
-                 <template #default="scope">
-                   <span>{{ filterType(scope.row.parentId ) }}</span>
-                 </template>
-               </el-table-column>
-               <el-table-column label="类型描述" align="center" key="typeDescribe" prop="typeDescribe" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="类型名称" align="left" key="name" prop="name" v-if="columns[0].visible" />
+               <el-table-column label="类型描述" align="left" key="typeDescribe" prop="typeDescribe" v-if="columns[2].visible" :show-overflow-tooltip="true" />
                <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[3].visible">
                   <template #default="scope">
                     <el-switch
