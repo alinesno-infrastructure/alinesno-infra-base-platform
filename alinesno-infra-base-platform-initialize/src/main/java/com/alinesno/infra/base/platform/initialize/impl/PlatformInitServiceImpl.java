@@ -4,11 +4,13 @@ import com.alinesno.infra.base.platform.entity.ProductItemEntity;
 import com.alinesno.infra.base.platform.entity.ProductTypeEntity;
 import com.alinesno.infra.base.platform.entity.SolutionManageEntity;
 import com.alinesno.infra.base.platform.entity.SolutionTypeEntity;
+import com.alinesno.infra.base.platform.enums.OwnerEnums;
 import com.alinesno.infra.base.platform.initialize.IPlatformInitService;
 import com.alinesno.infra.base.platform.service.IProductItemService;
 import com.alinesno.infra.base.platform.service.IProductTypeService;
 import com.alinesno.infra.base.platform.service.ISolutionManageService;
 import com.alinesno.infra.base.platform.service.ISolutionTypeService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,11 +42,11 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
     public void initProductType() {
 
         // 实例化产品类型
-        ProductTypeEntity basicService = createProductTypeEntity("基础服务", "fa-brands fa-slack", 2, null, null);
-        ProductTypeEntity inferenceService = createProductTypeEntity("推理服务", "fas fa-chalkboard-teacher", 1, null, null);
-        ProductTypeEntity dataInference = createProductTypeEntity("数据推理", "fas fa-chalkboard-teacher", 3, null, null);
-        ProductTypeEntity operationMaintenance = createProductTypeEntity("运维服务", "fas fa-chalkboard-teacher", 4, null, null);
-        ProductTypeEntity operationService = createProductTypeEntity("运营服务", "fas fa-chalkboard-teacher", 5, null, null);
+        ProductTypeEntity basicService = createProductTypeEntity("基础服务", "fa-brands fa-slack", 2, null, "fa-brands fa-python", "提供基本的服务支持，包括但不限于基础设施建设和维护等服务。");
+        ProductTypeEntity inferenceService = createProductTypeEntity("推理服务", "fas fa-chalkboard-teacher", 1, null, "fa-solid fa-truck-monster", "提供机器学习模型推理计算能力，帮助用户快速实现模型部署和应用。");
+        ProductTypeEntity dataInference = createProductTypeEntity("数据推理", "fas fa-chalkboard-teacher", 3, null, "fa-solid fa-screwdriver-wrench", "基于大数据的推理分析服务，通过智能算法处理海量数据，提取有价值的信息。");
+        ProductTypeEntity operationMaintenance = createProductTypeEntity("运维服务", "fas fa-chalkboard-teacher", 4, null, "fa-solid fa-shuttle-space", "提供全面的运维支持和服务，包括监控、故障排查、性能优化等。");
+        ProductTypeEntity operationService = createProductTypeEntity("运营服务", "fas fa-chalkboard-teacher", 5, null, "fa-solid fa-truck-field-un", "提供专业的运营策略和服务，帮助企业提高业务效率和市场竞争力。");
 
         List<ProductTypeEntity> productTypeEntityList = new ArrayList<>();
         productTypeEntityList.add(basicService);
@@ -56,21 +58,22 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         AtomicLong id = new AtomicLong(1L);
         productTypeEntityList.forEach(item -> {
            item.setId(id.getAndIncrement());
+           item.setTypeOwner(OwnerEnums.PLATFORM.getCode());
         });
 
         productTypeService.saveOrUpdateBatch(productTypeEntityList) ;
     }
 
-    public static ProductTypeEntity createProductTypeEntity(String name, String banner,int sortNumber, Long parentId, String remark) {
+    public static ProductTypeEntity createProductTypeEntity(String name, String banner, int sortNumber, Long parentId, String icon, String typeDescribe) {
         ProductTypeEntity entity = new ProductTypeEntity();
         entity.setName(name);
         entity.setBanner(banner);
         entity.setSortNumber(sortNumber);
         entity.setParentId(parentId == null ? 0L : parentId);
-        entity.setRemark(remark);
+        entity.setIcon(icon);
+        entity.setTypeDescribe(typeDescribe); // 添加这一行
         return entity;
     }
-
 
     public static ProductItemEntity createProductItemEntity(String name, String productBrief, String productDescribe, String linkPath, String prodStatus, int hasInner , String icon) {
 
@@ -115,6 +118,10 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         technicalService.add(aggregatedPaymentService);
         technicalService.add(contentManagementSystemService);
 
+        technicalService.forEach(item -> {
+            item.setProductTypeId(productTypeService.getOne(new LambdaQueryWrapper<ProductTypeEntity>().eq(ProductTypeEntity::getName, "基础服务")).getId().toString());
+        }) ;
+
 
         // 数据服务
         ProductItemEntity heterogeneousSystemExtractionService = createProductItemEntity("异构系统抽取服务", "alinesno-infra-data-pipeline", "提供数据集成的功能，用于将不同数据源的数据进行整合和转换", "http://alinesno-infra-data-pipeline-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-exchange-alt");
@@ -132,6 +139,10 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         dataService.add(realTimeComputingService);
         dataService.add(dataAssetService);
 
+        dataService.forEach(item -> {
+            item.setProductTypeId(productTypeService.getOne(new LambdaQueryWrapper<ProductTypeEntity>().eq(ProductTypeEntity::getName, "数据推理")).getId().toString());
+        }) ;
+
         // 推理服务
         ProductItemEntity ocrService = createProductItemEntity("OCR视觉识别服务", "alinesno-infra-smart-ocr", "OCR视觉识别服务", "http://alinesno-infra-smart-ocr-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-text-height");
         ProductItemEntity nlpService = createProductItemEntity("自然语言识别服务", "alinesno-infra-smart-nlp", "自然语言识别服务", "http://alinesno-infra-smart-nlp-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-language");
@@ -143,6 +154,10 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         smartService.add(nlpService);
         smartService.add(largeModelInferenceService);
         smartService.add(objectDetectionService);
+
+        smartService.forEach(item -> {
+            item.setProductTypeId(productTypeService.getOne(new LambdaQueryWrapper<ProductTypeEntity>().eq(ProductTypeEntity::getName, "推理服务")).getId().toString());
+        }) ;
 
         // 运维服务
         ProductItemEntity automationOpsService = createProductItemEntity("自动化运维服务", "alinesno-infra-ops-scheduler", "自动化运维服务", "http://alinesno-infra-ops-scheduler-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-cogs");
@@ -156,6 +171,10 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         opsService.add(containerManagementService);
         opsService.add(monitoringAlertService);
 
+        opsService.forEach(item -> {
+            item.setProductTypeId(productTypeService.getOne(new LambdaQueryWrapper<ProductTypeEntity>().eq(ProductTypeEntity::getName, "运维服务")).getId().toString());
+        }) ;
+
         // 运营服务
         ProductItemEntity infrastructurePlatformService = createProductItemEntity("基设平台管理服务", "alinesno-infra-base-platform", "基设平台管理服务", "http://alinesno-infra-base-platform-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-server");
         ProductItemEntity securityTouchService = createProductItemEntity("安全感触服务", "alinesno-infra-plat-security", "安全感触服务", "http://alinesno-infra-plat-security-ui.beta.plat.infra.linesno.com", "normal", 0, "fas fa-shield-alt");
@@ -167,6 +186,10 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         busService.add(securityTouchService);
         busService.add(realTimeRecommendationService);
         busService.add(realTimeProfilingService);
+
+        busService.forEach(item -> {
+            item.setProductTypeId(productTypeService.getOne(new LambdaQueryWrapper<ProductTypeEntity>().eq(ProductTypeEntity::getName, "运营服务")).getId().toString());
+        }) ;
 
 
         List<ProductItemEntity> allService = new ArrayList<>() ;
@@ -180,6 +203,7 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         AtomicLong id = new AtomicLong(1L);
         allService.forEach(item -> {
             item.setId(id.getAndIncrement());
+            item.setProductOwner(OwnerEnums.PLATFORM.getCode());
         });
 
         productItemService.saveOrUpdateBatch(allService) ;
@@ -189,10 +213,10 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
     public void initPlanType() {
 
         // 实例化解决方案类型
-        SolutionTypeEntity modernization = createSolutionTypeEntity("进行现代化改造", "通过对贵组织的业务应用组合进行评估、规划、实施和衡量，实现现代化改造和简化，提升系统的整体效率和灵活性。", null);
-        SolutionTypeEntity businessPlatform = createSolutionTypeEntity("业务中台", "构建和优化业务中台系统，实现业务功能的集成和共享，提升组织的业务处理能力和灵活性。", null);
-        SolutionTypeEntity dataGovernance = createSolutionTypeEntity("数据治理", "建立完善的数据治理体系，通过数据标准化、数据质量管理和数据资产管理，提升数据的准确性和可用性。", null);
-        SolutionTypeEntity operationSolution = createSolutionTypeEntity("运维方案", "提供系统的运维和管理解决方案，包括自动化运维、监控、日志管理和性能优化，确保系统的稳定性和可靠性。", null);
+        SolutionTypeEntity modernization = createSolutionTypeEntity("进行现代化改造", "通过对贵组织的业务应用组合进行评估、规划、实施和衡量，实现现代化改造和简化，提升系统的整体效率和灵活性。", null, "fas fa-laptop-code");
+        SolutionTypeEntity businessPlatform = createSolutionTypeEntity("业务中台", "构建和优化业务中台系统，实现业务功能的集成和共享，提升组织的业务处理能力和灵活性。", null, "fas fa-network-wired");
+        SolutionTypeEntity dataGovernance = createSolutionTypeEntity("数据治理", "建立完善的数据治理体系，通过数据标准化、数据质量管理和数据资产管理，提升数据的准确性和可用性。", null, "fas fa-database");
+        SolutionTypeEntity operationSolution = createSolutionTypeEntity("运维方案", "提供系统的运维和管理解决方案，包括自动化运维、监控、日志管理和性能优化，确保系统的稳定性和可靠性。", null, "fas fa-server");
 
         List<SolutionTypeEntity> allType = new ArrayList<>() ;
         allType.add(modernization);
@@ -208,11 +232,15 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         solutionTypeService.saveOrUpdateBatch(allType) ;
     }
 
-    public static SolutionTypeEntity createSolutionTypeEntity(String typeName, String typeDescribe, Long parentId) {
+    public static SolutionTypeEntity createSolutionTypeEntity(String typeName,
+                                                              String typeDescribe,
+                                                              Long parentId ,
+                                                              String icon) {
         SolutionTypeEntity entity = new SolutionTypeEntity();
         entity.setTypeName(typeName);
         entity.setTypeDescribe(typeDescribe);
         entity.setParentId(parentId);
+        entity.setIcon(icon);
         return entity;
     }
 
