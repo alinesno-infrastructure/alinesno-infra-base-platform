@@ -48,8 +48,27 @@
                </el-table-column>
 
                <!-- 业务字段-->
-               <el-table-column label="类型名称" align="left" key="name" prop="name" v-if="columns[0].visible" />
+               <el-table-column label="类型名称" align="left" key="name" prop="name" v-if="columns[0].visible">
+                   <template #default="scope">
+                        <div>
+                           {{ scope.row.name }}
+                        </div>
+                        <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
+                           类型标识:{{ scope.row.code }}
+                        </div>
+                  </template>
+               </el-table-column>
                <el-table-column label="类型描述" align="left" key="typeDescribe" prop="typeDescribe" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="所属类型" align="center" key="typeOwner" prop="typeOwner">
+                  <template #default="scope">
+                     <el-button type="success" bg text v-if="scope.row.typeOwner === 'platform'">
+                           <i class="fa-solid fa-link"></i>&nbsp;平台
+                     </el-button>
+                     <el-button type="primary" bg text v-else>
+                           <i class="fa-solid fa-link"></i>&nbsp;组织
+                     </el-button>
+                  </template>
+               </el-table-column>
                <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[3].visible">
                   <template #default="scope">
                     <el-switch
