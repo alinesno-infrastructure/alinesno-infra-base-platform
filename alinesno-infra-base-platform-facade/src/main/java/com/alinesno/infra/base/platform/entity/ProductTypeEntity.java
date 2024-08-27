@@ -1,5 +1,6 @@
 package com.alinesno.infra.base.platform.entity;
 
+import com.alinesno.infra.base.platform.enums.OwnerEnums;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import lombok.Data;
@@ -18,6 +19,14 @@ import lombok.EqualsAndHashCode;
 @TableName("product_type")
 @Data
 public class ProductTypeEntity extends InfraBaseEntity {
+
+	/**
+	 * 图标
+	 */
+	@TableField("icon")
+	@ColumnType(length=255)
+	@ColumnComment("图标")
+	private String icon ;
 
 	/**
 	 * 名称
@@ -69,5 +78,9 @@ public class ProductTypeEntity extends InfraBaseEntity {
 	@ColumnComment("备注")
 	private String remark;
 
+	@TableField("type_owner")
+	@ColumnType(length=255)
+	@ColumnComment("类型所有者")
+	private String typeOwner = OwnerEnums.PLATFORM.getCode()  ; // 类型所有者
 
 }
