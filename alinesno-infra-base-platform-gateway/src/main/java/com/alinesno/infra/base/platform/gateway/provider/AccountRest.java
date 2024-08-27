@@ -1,14 +1,15 @@
 package com.alinesno.infra.base.platform.gateway.provider;
 
+import com.alinesno.infra.base.platform.api.MenuItemDto;
+import com.alinesno.infra.base.platform.service.IAccountPropertiesService;
 import com.alinesno.infra.base.platform.service.IAccountSignService;
 import com.alinesno.infra.common.facade.response.R;
 import com.alinesno.infra.common.web.adapter.rest.SuperController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 账户控制器
@@ -23,6 +24,9 @@ public class AccountRest extends SuperController {
 
     @Autowired
     private IAccountSignService accountSignService ;
+
+    @Autowired
+    private IAccountPropertiesService accountPropertiesService ;
 
     /**
      * 打招呼信息
@@ -56,16 +60,20 @@ public class AccountRest extends SuperController {
      * 组织自定义视图查询
      */
     @GetMapping("/customView")
-    public R<String> customView(long accountId) {
-        return R.ok("查询成功！");
+    public R<List<MenuItemDto>> customView(long orgId) {
+
+        List<MenuItemDto> menuItemDtoList = accountPropertiesService.queryConstomView(orgId) ;
+
+        return R.ok(menuItemDtoList);
     }
 
     /**
      * 保存组织自定义视图查询
       */
     @PostMapping("/saveCustomView")
-    public R<String> saveCustomView(long accountId) {
-        return R.ok("保存成功！");
+    public R<Boolean> saveCustomView(@RequestBody List<MenuItemDto> menuItemDtoList , @RequestParam long orgId) {
+        accountPropertiesService.saveCustomView(menuItemDtoList , orgId) ;
+        return R.ok(true);
     }
 
 
