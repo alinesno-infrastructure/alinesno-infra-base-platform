@@ -138,12 +138,12 @@ public class CommonLoginController {
                 // 产品管理
                 Menu m3 = new Menu("Product", "/product", false, "noRedirect", "Layout" , true , new Menu.Meta("产品管理", "redis", false, null),
                         List.of(
-                                new Menu("产品列表", "base/platform/product/list", false, false, "productList", new Menu.Meta("产品列表", "number", false, null)),
-                                new Menu("产品访问", "base/platform/productaccess/list", false, false, "productAccesslist",  new Menu.Meta("产品访问", "redis", false, null)),
                                 new Menu("产品类型", "base/platform/product/types", false, false, "productTypes",  new Menu.Meta("产品类型", "search", false, null)),
-                                new Menu("产品方案", "base/platform/productsolution/list", false, false, "productsolution",  new Menu.Meta("产品方案", "link", false, null)),
+                                new Menu("产品列表", "base/platform/product/list", false, false, "productList", new Menu.Meta("产品列表", "number", false, null)),
                                 new Menu("方案管理", "base/platform/solutionmanage/list", false, false, "solutionmanage",  new Menu.Meta("方案管理", "row", false, null)),
-                                new Menu("方案类型", "base/platform/solutiontype/list", false, false, "solutiontype",  new Menu.Meta("方案类型", "pdf", false, null))
+                                new Menu("方案类型", "base/platform/solutiontype/list", false, false, "solutiontype",  new Menu.Meta("方案类型", "pdf", false, null)),
+                                new Menu("产品方案", "base/platform/productsolution/list", false, false, "productsolution",  new Menu.Meta("产品方案", "link", false, null)),
+                                new Menu("产品访问", "base/platform/productaccess/list", false, false, "productAccesslist",  new Menu.Meta("产品访问", "redis", false, null))
                         )) ;
 
                 // 咨询服务
