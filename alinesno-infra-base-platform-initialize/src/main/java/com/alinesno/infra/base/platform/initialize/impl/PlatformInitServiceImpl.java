@@ -42,11 +42,45 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
     public void initProductType() {
 
         // 实例化产品类型
-        ProductTypeEntity basicService = createProductTypeEntity("基础服务", "fa-brands fa-slack", 2, null, "fa-brands fa-python", "提供基本的服务支持，包括但不限于基础设施建设和维护等服务。");
-        ProductTypeEntity inferenceService = createProductTypeEntity("推理服务", "fas fa-chalkboard-teacher", 1, null, "fa-solid fa-truck-monster", "提供机器学习模型推理计算能力，帮助用户快速实现模型部署和应用。");
-        ProductTypeEntity dataInference = createProductTypeEntity("数据推理", "fas fa-chalkboard-teacher", 3, null, "fa-solid fa-screwdriver-wrench", "基于大数据的推理分析服务，通过智能算法处理海量数据，提取有价值的信息。");
-        ProductTypeEntity operationMaintenance = createProductTypeEntity("运维服务", "fas fa-chalkboard-teacher", 4, null, "fa-solid fa-shuttle-space", "提供全面的运维支持和服务，包括监控、故障排查、性能优化等。");
-        ProductTypeEntity operationService = createProductTypeEntity("运营服务", "fas fa-chalkboard-teacher", 5, null, "fa-solid fa-truck-field-un", "提供专业的运营策略和服务，帮助企业提高业务效率和市场竞争力。");
+        ProductTypeEntity basicService = createProductTypeEntity("基础服务",
+                "alinesno-infra-base",
+                "http://data.linesno.com/banner/1.png",
+                2,
+                null,
+                "fa-brands fa-python",
+                "提供基本的服务支持，包括但不限于基础设施建设和维护等服务。");
+
+        ProductTypeEntity inferenceService = createProductTypeEntity("推理服务",
+                "alinesno-infra-brain",
+                "http://data.linesno.com/banner/2.png",
+                1,
+                null,
+                "fa-solid fa-truck-monster",
+                "提供机器学习模型推理计算能力，帮助用户快速实现模型部署和应用。");
+
+        ProductTypeEntity dataInference = createProductTypeEntity("数据推理",
+                "alinesno-infra-data",
+                "http://data.linesno.com/banner/3.png",
+                3,
+                null,
+                "fa-solid fa-screwdriver-wrench",
+                "基于大数据的推理分析服务，通过智能算法处理海量数据，提取有价值的信息。");
+
+        ProductTypeEntity operationMaintenance = createProductTypeEntity("运维服务",
+                "alinesno-infra-operation",
+                "http://data.linesno.com/banner/4.png",
+                4,
+                null,
+                "fa-solid fa-shuttle-space",
+                "提供全面的运维支持和服务，包括监控、故障排查、性能优化等。");
+
+        ProductTypeEntity operationService = createProductTypeEntity("运营服务",
+                "alinesno-infra-platform",
+                "http://data.linesno.com/banner/5.png",
+                5,
+                null,
+                "fa-solid fa-truck-field-un",
+                "提供专业的运营策略和服务，帮助企业提高业务效率和市场竞争力。");
 
         List<ProductTypeEntity> productTypeEntityList = new ArrayList<>();
         productTypeEntityList.add(basicService);
@@ -64,10 +98,11 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         productTypeService.saveOrUpdateBatch(productTypeEntityList) ;
     }
 
-    public static ProductTypeEntity createProductTypeEntity(String name, String banner, int sortNumber, Long parentId, String icon, String typeDescribe) {
+    public static ProductTypeEntity createProductTypeEntity(String name , String banner, String code, int sortNumber, Long parentId, String icon, String typeDescribe) {
         ProductTypeEntity entity = new ProductTypeEntity();
         entity.setName(name);
         entity.setBanner(banner);
+        entity.setCode(code);
         entity.setSortNumber(sortNumber);
         entity.setParentId(parentId == null ? 0L : parentId);
         entity.setIcon(icon);
