@@ -10,7 +10,9 @@ public enum OwnerEnums {
 
     // 包括有平台(platform)/用户(account)
     PLATFORM("platform", "平台"),
-    ACCOUNT("account", "用户");
+    ORG("org", "组织"),
+    ACCOUNT("account", "用户")
+    ;
 
     private final String code;
     private final String name;
