@@ -2,6 +2,7 @@ package com.alinesno.infra.base.platform.entity;
 
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
@@ -34,15 +35,20 @@ public class ContentEntity extends InfraBaseEntity {
      */
     @Excel(name = "标题")
     @TableField("title")
-	@ColumnType(length=255)
+	@ColumnType(length=64)
 	@ColumnComment("标题")
     private String title;
+
+    @TableField("title_icon")
+	@ColumnType(length=32)
+	@ColumnComment("标题图标")
+    private String titleIcon ;
 
     /**
      * 内容描述
      */
     @TableField("content_desc")
-	@ColumnType(length=255)
+	@ColumnType(value = MySqlTypeConstant.LONGTEXT)
 	@ColumnComment("内容描述")
     private String contentDesc;
 
@@ -69,4 +75,5 @@ public class ContentEntity extends InfraBaseEntity {
 	@ColumnType(length=10)
 	@ColumnComment("查看次数")
     private int viewCount ;
+
 }
