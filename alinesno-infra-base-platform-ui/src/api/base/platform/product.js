@@ -42,7 +42,7 @@ export function getProductItem(databaseId) {
 }
 
 // 新增数据库
-export function addProductItem(data) {
+export function addProductItem(query) {
   debugger
   return request({
     url: managerUrl.saveUrl ,
@@ -53,11 +53,10 @@ export function addProductItem(data) {
 
 // 修改数据库
 export function updateProductItem(data) {
-  debugger
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
-    params: query
+    data: data
   })
 }
 
