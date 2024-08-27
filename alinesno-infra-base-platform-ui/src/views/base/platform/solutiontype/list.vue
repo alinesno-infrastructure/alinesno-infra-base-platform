@@ -34,9 +34,18 @@
             <el-table v-loading="loading" :data="solutionTypeList" @selection-change="handleSelectionChange">
                <el-table-column type="selection" width="50" align="center" />
                <!-- 业务字段-->
-               <el-table-column label="方案类型" align="center" key="typeName" prop="typeName"  v-if="columns[0].visible" >   </el-table-column>
-               <el-table-column label="方案描述" align="center" key="typeDescribe" prop="typeDescribe" v-if="columns[1].visible" />
+               <el-table-column label="图标" align="center" width="80" key="status" v-if="columns[2].visible">
+                 <template #default="scope">
+                    <span style="font-size:25px;color:#3b5998;">
+                       <i :class="scope.row.icon"></i>
+                    </span>
+                 </template>
+               </el-table-column>
+               <el-table-column label="方案类型" align="left" key="typeName" prop="typeName"  v-if="columns[0].visible" >   </el-table-column>
+               <el-table-column label="方案描述" align="left" key="typeDescribe" prop="typeDescribe" v-if="columns[1].visible" />
+               <!--
                <el-table-column label="父类型" align="center" key="parentId" prop="parentId" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               -->
                <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[3].visible">
                   <template #default="scope">
                     <el-switch
