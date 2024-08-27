@@ -20,6 +20,14 @@ import lombok.EqualsAndHashCode;
 public class SolutionTypeEntity extends InfraBaseEntity {
 
 	/**
+	 * 图标
+	 */
+	@TableField("icon")
+	@ColumnType(length=255)
+	@ColumnComment("图标")
+	private String icon ;
+
+	/**
 	 * 名称
 	 */
 	@TableField("type_name")
