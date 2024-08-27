@@ -189,12 +189,11 @@ jobs:
             export NAMESPACE=${{ secrets.K8S_NAMESPACE }}
 
             export REDIS_HOST=${{ secrets.DEV_REDIS_HOST }}
+            export REDIS_KEY=${{ secrets.DEV_REDIS_KEY }}
             export INFRA_DEV_DOMAIN=${{ secrets.INFRA_DEV_DOMAIN }}
 
-            export KAFKA_SERVERS=${{ secrets.DEV_KAFKA_SERVER }}
-
-            export DB_CLICKHOUSE_URL=${{ secrets.DEV_DB_CLICKHOUSE_URL }}
-            export DB_CLICKHOUSE_USRENAME=${{ secrets.DEV_DB_CLICKHOUSE_USERNAME }}
-            export DB_CLICKHOUSE_PASSWORD=${{ secrets.DEV_DB_CLICKHOUSE_PASSWORD }}
+            export DB_MYSQL_URL=${{ secrets.DEV_DB_MYSQL_URL }}
+            export DB_MYSQL_USRENAME=${{ secrets.DEV_DB_MYSQL_USRENAME }}
+            export DB_MYSQL_PASSWORD=${{ secrets.DEV_DB_MYSQL_PASSWORD }}
 
             envsubst < /home/github-action/${{ env.PROJECT_NAME }}/kubernetes-${{ env.CURRENT_PROFIRE }}.yml | kubectl apply -f -
