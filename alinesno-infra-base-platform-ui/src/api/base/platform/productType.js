@@ -15,6 +15,7 @@ var managerUrl = {
     createUrl: prefix + 'add' ,
     saveUrl: prefix + 'save' ,
     updateUrl: prefix +"modify" ,
+    allProductType: prefix +"allProductType" ,
     statusUrl: prefix +"changeStatus" ,
     cleanUrl: prefix + "clean",
     detailUrl: prefix +"detail",
@@ -30,6 +31,14 @@ export function listProductType(query) {
     url: managerUrl.datatables ,
     method: 'post',
     params: query
+  })
+}
+
+// 查询应用列表类型
+export function getAllProductType() {
+  return request({
+    url: managerUrl.allProductType ,
+    method: 'get'
   })
 }
 
