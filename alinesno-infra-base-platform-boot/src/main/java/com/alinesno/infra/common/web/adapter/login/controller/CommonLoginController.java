@@ -142,7 +142,7 @@ public class CommonLoginController {
                                 new Menu("产品列表", "base/platform/product/list", false, false, "productList", new Menu.Meta("产品列表", "number", false, null)),
                                 new Menu("方案管理", "base/platform/solutionmanage/list", false, false, "solutionmanage",  new Menu.Meta("方案管理", "row", false, null)),
                                 new Menu("方案类型", "base/platform/solutiontype/list", false, false, "solutiontype",  new Menu.Meta("方案类型", "pdf", false, null)),
-                                new Menu("产品方案", "base/platform/productsolution/list", false, false, "productsolution",  new Menu.Meta("产品方案", "link", false, null)),
+                                // new Menu("产品方案", "base/platform/productsolution/list", false, false, "productsolution",  new Menu.Meta("产品方案", "link", false, null)),
                                 new Menu("产品访问", "base/platform/productaccess/list", false, false, "productAccesslist",  new Menu.Meta("产品访问", "redis", false, null))
                         )) ;
 
