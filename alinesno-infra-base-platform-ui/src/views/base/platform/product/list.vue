@@ -35,11 +35,11 @@
                <el-table-column type="index" width="50" align="center" />
 
                <el-table-column label="图标" align="center" width="60" key="icon">
-                     <template #default="scope">
-                        <div>
-                           <img style="width:40px; height:40px" :src="'http://data.linesno.com/icons/product/' + (scope.$index + 1) + '.png'" />
-                        </div>
-                     </template>
+                 <template #default="scope">
+                    <div>
+                       <img style="width:40px; height:40px" :src="'http://data.linesno.com/icons/product/' + (scope.$index + 1) + '.png'" />
+                    </div>
+                 </template>
                </el-table-column>
 
                <!-- 业务字段-->
