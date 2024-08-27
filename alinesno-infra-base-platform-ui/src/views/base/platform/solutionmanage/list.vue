@@ -34,11 +34,38 @@
             <el-table v-loading="loading" :data="SolutionManageList" @selection-change="handleSelectionChange">
                <el-table-column type="selection" width="50" align="center" />
                <!-- 业务字段-->
-              <el-table-column label="方案类型" align="center" key="solutionTypeId" prop="solutionTypeId"  v-if="columns[0].visible" >   </el-table-column>
-               <el-table-column label="方案标题" align="center" key="title" prop="title" v-if="columns[1].visible" />
-               <el-table-column label="方案内容" align="center" key="content" prop="content" v-if="columns[2].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="方案链接" align="center" key="link" prop="link" v-if="columns[3].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="方案备注" align="center" key="remark" prop="remark"  v-if="columns[4].visible" >   </el-table-column>
+              <el-table-column label="序号" align="center" width="50" key="solutionTypeId" prop="solutionTypeId"  v-if="columns[0].visible" >   </el-table-column>
+               <el-table-column label="方案标题" align="left" key="title" prop="title" v-if="columns[1].visible">
+                   <template #default="scope">
+                        <div>
+                           {{ scope.row.title }}
+                        </div>
+                        <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
+                           {{ scope.row.remark }}
+                        </div>
+                  </template>
+               </el-table-column>
+               <el-table-column label="方案内容" align="left" key="content" prop="content" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="方案类型" width="180" align="center" key="allow_url" prop="linkPath" v-if="columns[2].visible">
+                   <template #default="scope">
+                      <el-select disabled v-model="scope.row.productTypeId" placeholder="请选择方案类型">
+                        <el-option v-for="item in productTypeOptions"
+                                :label="item.name"
+                                :key="item.id"
+                                :value="item.id">
+                                {{ item.name }}
+                        </el-option>
+                      </el-select>
+                   </template>
+               </el-table-column>
+               <el-table-column label="方案链接" width="150" align="center" key="link" prop="link" v-if="columns[3].visible" :show-overflow-tooltip="true">
+                    <template #default="scope">
+                        <el-button type="primary" bg text @click="openLink(scope.row.id , scope.row.documentType)">
+                            <i class="fa-solid fa-link"></i>&nbsp;
+                            <el-link :underline="false" type="primary" :href="scope.row.link" target="_blank">打开方案</el-link>
+                        </el-button>
+                    </template>
+               </el-table-column>
                <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[5].visible">
                   <template #default="scope">
                     <el-switch
