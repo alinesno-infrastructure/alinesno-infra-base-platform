@@ -79,6 +79,17 @@
                  </template>
                </el-table-column>
 
+               <el-table-column label="所属类型" align="center" key="typeOwner" prop="typeOwner">
+                  <template #default="scope">
+                     <el-button type="success" bg text v-if="scope.row.productOwner === 'platform'">
+                           <i class="fa-solid fa-link"></i>&nbsp;平台
+                     </el-button>
+                     <el-button type="primary" bg text v-else>
+                           <i class="fa-solid fa-link"></i>&nbsp;组织
+                     </el-button>
+                  </template>
+               </el-table-column>
+
                <el-table-column label="是否公开" align="center" width="100" key="isPublic" prop="isPublic" v-if="columns[4].visible" >
                   <template #default="scope">
                     <span>{{ isPublicTrans(scope.row.isPublic ) }}</span>
