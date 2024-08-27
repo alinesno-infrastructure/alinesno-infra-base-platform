@@ -28,6 +28,11 @@ public class ProductTypeEntity extends InfraBaseEntity {
 	@ColumnComment("图标")
 	private String icon ;
 
+	@TableField("code")
+	@ColumnType(length=255)
+	@ColumnComment("业务类型编码")
+	private String code ;
+
 	/**
 	 * 名称
 	 */
