@@ -32,21 +32,54 @@
             </el-row>
 
             <el-table v-loading="loading" :data="ProductItemList" @selection-change="handleSelectionChange">
-               <el-table-column type="selection" width="50" align="center" />
-               <el-table-column label="图标" align="center" with="80" key="status" v-if="columns[5].visible">
+               <el-table-column type="index" width="50" align="center" />
+
+               <el-table-column label="图标" align="center" width="60" key="icon">
+                     <template #default="scope">
+                        <div>
+                           <img style="width:40px; height:40px" :src="'http://data.linesno.com/icons/product/' + (scope.$index + 1) + '.png'" />
+                        </div>
+                     </template>
                </el-table-column>
 
                <!-- 业务字段-->
-               <el-table-column label="应用名称" align="center" key="name" prop="name" v-if="columns[0].visible" />
-               <el-table-column label="应用描述" align="center" key="productBrief" prop="productBrief" v-if="columns[1].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="授权地址" align="center" key="allow_url" prop="linkPath" v-if="columns[2].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="应用状态" align="center" key="prodStatus" prop="isPublic"  v-if="columns[3].visible" >
+               <el-table-column label="应用名称" align="left" key="name" prop="name" v-if="columns[0].visible">
+                   <template #default="scope">
+                        <div>
+                           {{ scope.row.name }}
+                        </div>
+                        <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
+                           {{ scope.row.productBrief }}
+                        </div>
+                  </template>
+               </el-table-column>
+               <el-table-column label="访问地址" width="150" align="center" key="link" prop="link" v-if="columns[3].visible" :show-overflow-tooltip="true">
+                    <template #default="scope">
+                        <el-button type="primary" bg text>
+                            <i class="fa-solid fa-link"></i>&nbsp;
+                            <el-link :underline="false" type="primary" :href="scope.row.linkPath" target="_blank">打开方案</el-link>
+                        </el-button>
+                    </template>
+               </el-table-column>
+               <el-table-column label="产品类型" align="center" key="allow_url" prop="linkPath" v-if="columns[2].visible">
+                   <template #default="scope">
+                      <el-select disabled v-model="scope.row.productTypeId" placeholder="请选择产品类型">
+                        <el-option v-for="item in productTypeOptions"
+                                :label="item.name"
+                                :key="item.id"
+                                :value="item.id">
+                                {{ item.name }}
+                        </el-option>
+                      </el-select>
+                   </template>
+               </el-table-column>
+               <el-table-column label="应用状态" align="center" width="100" key="prodStatus" prop="isPublic"  v-if="columns[3].visible" >
                  <template #default="scope">
                    <span>{{ prodStatusTrans(scope.row.prodStatus ) }}</span>
                  </template>
                </el-table-column>
 
-               <el-table-column label="是否公开" align="center" key="isPublic" prop="isPublic" v-if="columns[4].visible" >
+               <el-table-column label="是否公开" align="center" width="100" key="isPublic" prop="isPublic" v-if="columns[4].visible" >
                   <template #default="scope">
                     <span>{{ isPublicTrans(scope.row.isPublic ) }}</span>
                   </template>
@@ -136,6 +169,16 @@
                   </el-form-item>
                </el-col>
             </el-row>
+            <el-form-item label="产品类型" prop="productTypeId">
+              <el-select v-model="form.productTypeId" placeholder="请选择产品类型">
+                <el-option v-for="item in productTypeOptions"
+                        :label="item.name"
+                        :key="item.id"
+                        :value="item.id">
+                        {{ item.name }}
+                </el-option>
+              </el-select>
+            </el-form-item>
             <el-row>
                <el-col :span="24">
                   <el-form-item label="应用介绍" prop="productBrief">
@@ -198,8 +241,13 @@ import {
   delProductItem,
   getProductItem,
   updateProductItem,
-  addProductItem,  changeProductStatus
+  addProductItem,
+  changeProductStatus
 } from "@/api/base/platform/product";
+
+import {
+  getAllProductType,
+} from "@/api/base/platform/productType";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
@@ -217,6 +265,7 @@ const total = ref(0);
 const title = ref("");
 const dateRange = ref([]);
 const postOptions = ref([]);
+const productTypeOptions = ref([]);
 const roleOptions = ref([]);
 
 // 列显隐信息
@@ -243,6 +292,7 @@ const data = reactive({
       productBrief: [{ required: true, message: "应用介绍不能为空", trigger: "blur" }],
       linkPath: [{ required: true, message: "授权地址不能为空", trigger: "blur" }] ,
       prodStatus: [{ required: true , message: "应用状态不能为空", trigger: "blur"}],
+      productTypeId: [{ required: true , message: "产品类型", trigger: "blur"}],
       isPublic: [{ required: true, message: "是否公开不能为空", trigger: "blur" }] ,
       productDescribe: [{ required: false, message: "备注不能为空", trigger: "blur" }]
    },
@@ -334,6 +384,13 @@ function handleUpdate(row) {
    });
 };
 
+/** 查询所有类型列表 */
+function handleAllProductType() {
+   getAllProductType().then(response => {
+      productTypeOptions.value = response.data;
+   });
+};
+
 /** 提交按钮 */
 function submitForm() {
    proxy.$refs["productItemRef"].validate(valid => {
@@ -390,8 +447,7 @@ function handleStatusChange(row) {
   });
 };
 
-
-
+handleAllProductType() ;
 getList();
 
 </script>
