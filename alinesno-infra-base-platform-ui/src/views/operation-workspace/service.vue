@@ -29,7 +29,7 @@
       <el-col :span="5">
         <div class="grid-content">
           <div class="panel-header">
-            <div class="header-title"><i class="fa-solid fa-user-nurse"></i> 接口调用统计</div>
+            <div class="header-title"><i class="fa-solid fa-user-nurse"></i> 运营统计</div>
           </div>
           <div class="panel-body acp-height-auto">
             <ul class="panel-item-text">
@@ -56,11 +56,11 @@ import * as echarts from "echarts";
 const echart = echarts;
 
 const opertionAssets = ref([
-  {id:'1' , title:'异常告警信息' , count:45} ,
-  {id:'2' , title:'正常运行信息' , count:145} ,
-  {id:'3' , title:'告警发送成功' , count:65} ,
-  {id:'4' , title:'告警发送失败' , count:85} ,
-  {id:'5' , title:'事件提醒次数' , count:45} ,
+  {id:'3' , title:'产品咨询' , count:65} ,
+  {id:'1' , title:'平台访问量' , count:45} ,
+  {id:'2' , title:'平台用户量' , count:145} ,
+  {id:'4' , title:'平台订单数' , count:85} ,
+  {id:'5' , title:'业务日志' , count:45} ,
 ])
 
 function drawBar2() {
