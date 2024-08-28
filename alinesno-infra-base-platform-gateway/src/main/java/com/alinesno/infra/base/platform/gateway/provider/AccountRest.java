@@ -1,11 +1,15 @@
 package com.alinesno.infra.base.platform.gateway.provider;
 
+import com.alinesno.infra.base.platform.api.FeedbackDto;
 import com.alinesno.infra.base.platform.api.MenuItemDto;
+import com.alinesno.infra.base.platform.entity.FeedbackEntity;
 import com.alinesno.infra.base.platform.service.IAccountPropertiesService;
 import com.alinesno.infra.base.platform.service.IAccountSignService;
+import com.alinesno.infra.base.platform.service.IFeedbackService;
 import com.alinesno.infra.common.facade.response.R;
 import com.alinesno.infra.common.web.adapter.rest.SuperController;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +31,25 @@ public class AccountRest extends SuperController {
 
     @Autowired
     private IAccountPropertiesService accountPropertiesService ;
+
+    @Autowired
+    private IFeedbackService feedbackService ;
+
+    /**
+     * 获取保存用户反馈和建议
+     */
+    @PostMapping("/saveFeedback")
+    public R<Boolean> saveFeedback(@RequestBody FeedbackDto dto) {
+        log.info("保存用户反馈和建议:{}", dto);
+
+        FeedbackEntity entity = new FeedbackEntity() ;
+        BeanUtils.copyProperties(dto, entity);
+
+        feedbackService.save(entity) ;
+
+        // 保存用户反馈和建议
+        return R.ok(true);
+    }
 
     /**
      * 打招呼信息
