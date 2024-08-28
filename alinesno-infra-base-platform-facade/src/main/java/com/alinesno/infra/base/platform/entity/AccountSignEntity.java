@@ -20,6 +20,14 @@ import lombok.EqualsAndHashCode;
 public class AccountSignEntity extends InfraBaseEntity {
 
 	/**
+	 * 账号ID
+	 */
+	@TableField("account_id")
+	@ColumnType(length=32)
+	@ColumnComment("账号ID")
+	private long accountId;
+
+	/**
 	 * 今天是否已签到
 	 */
 	@TableField("has_day_sign")
