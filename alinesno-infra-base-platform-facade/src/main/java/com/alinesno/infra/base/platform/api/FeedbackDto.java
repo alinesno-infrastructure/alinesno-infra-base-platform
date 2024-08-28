@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 这是一个用于存储云反馈的实体类
+ * 用户建议和反馈的实体类
  *
  * @author luoxiaodong
  * @version 1.0.0
