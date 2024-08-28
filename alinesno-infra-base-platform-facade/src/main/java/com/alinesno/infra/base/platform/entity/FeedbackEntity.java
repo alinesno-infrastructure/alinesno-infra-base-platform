@@ -30,6 +30,15 @@ public class FeedbackEntity extends InfraBaseEntity {
 	private String typeCode;
 
 	/**
+	 * 评分
+	 */
+	@Excel(name = "评分")
+	@TableField("grade")
+	@ColumnType(length=10)
+	@ColumnComment("评分")
+	private long grade ;
+
+	/**
 	 * 标题
 	 */
 	@Excel(name = "标题")
@@ -72,5 +81,5 @@ public class FeedbackEntity extends InfraBaseEntity {
 	@TableField("account_id")
 	@ColumnType(length=10)
 	@ColumnComment("账户名")
-	private String accountId;
+	private long accountId;
 }
