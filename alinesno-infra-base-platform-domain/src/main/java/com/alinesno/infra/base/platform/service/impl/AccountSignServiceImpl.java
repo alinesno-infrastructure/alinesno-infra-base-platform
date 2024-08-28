@@ -27,7 +27,7 @@ public class AccountSignServiceImpl extends IBaseServiceImpl<AccountSignEntity, 
         if(!isSignIn(accountId)){
             AccountSignEntity entity = new AccountSignEntity() ;
 
-            entity.setOperatorId(accountId);
+            entity.setAccountId(accountId);
             entity.setHasDaySign(1);
             entity.setSignDayCount(1);
             entity.setGrowthValue(1);
@@ -38,7 +38,7 @@ public class AccountSignServiceImpl extends IBaseServiceImpl<AccountSignEntity, 
 
         // 查询出用户所有签到的天数
         LambdaQueryWrapper<AccountSignEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(AccountSignEntity::getOperatorId, accountId);
+        wrapper.eq(AccountSignEntity::getAccountId, accountId);
 
         return (int) count(wrapper);
     }
@@ -56,7 +56,7 @@ public class AccountSignServiceImpl extends IBaseServiceImpl<AccountSignEntity, 
         LocalDateTime todayEnd = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
 
         LambdaQueryWrapper<AccountSignEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(AccountSignEntity::getOperatorId, accountId)
+        wrapper.eq(AccountSignEntity::getAccountId, accountId)
                 .ge(AccountSignEntity::getAddTime, todayStart)
                 .le(AccountSignEntity::getAddTime, todayEnd);
 
