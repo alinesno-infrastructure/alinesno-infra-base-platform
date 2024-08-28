@@ -98,7 +98,7 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         productTypeService.saveOrUpdateBatch(productTypeEntityList) ;
     }
 
-    public static ProductTypeEntity createProductTypeEntity(String name , String banner, String code, int sortNumber, Long parentId, String icon, String typeDescribe) {
+    public static ProductTypeEntity createProductTypeEntity(String name , String code, String banner,  int sortNumber, Long parentId, String icon, String typeDescribe) {
         ProductTypeEntity entity = new ProductTypeEntity();
         entity.setName(name);
         entity.setBanner(banner);
