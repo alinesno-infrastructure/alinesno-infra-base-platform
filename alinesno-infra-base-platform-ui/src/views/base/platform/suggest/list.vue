@@ -33,10 +33,18 @@
 
             <el-table v-loading="loading" :data="FeedBackList" @selection-change="handleSelectionChange">
                <el-table-column type="selection" width="50" align="center" />
+
                <!-- 业务字段-->
-               <el-table-column label="创建者"   align="center" key="accountId" prop="accountId" v-if="columns[0].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="标题" align="center" key="title" prop="title" v-if="columns[1].visible" :show-overflow-tooltip="true" />
-               <el-table-column label="建议内容" align="center" key="problemDesc" prop="problemDesc" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="创建者"   align="center" key="accountId" width="100" prop="accountId" v-if="columns[0].visible" :show-overflow-tooltip="true">
+                 <template #default="scope">
+                    <div>
+                       <img style="width:30px; height:30px" :src="'http://data.linesno.com/icons/product/' + (scope.$index + 1) + '.png'" />
+                    </div>
+                 </template>
+               </el-table-column>
+
+               <el-table-column label="建议内容" align="left" key="problemDesc" prop="problemDesc" v-if="columns[2].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="评价级别" align="center" key="grade" prop="grade" width="100" v-if="columns[1].visible" :show-overflow-tooltip="true" />
                <el-table-column label="添加时间" align="center" prop="addTime" v-if="columns[3].visible" width="160">
                   <template #default="scope">
                      <span>{{ parseTime(scope.row.addTime) }}</span>
