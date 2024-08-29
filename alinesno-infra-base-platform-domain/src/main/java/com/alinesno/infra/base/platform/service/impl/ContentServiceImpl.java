@@ -21,7 +21,7 @@ public class ContentServiceImpl extends IBaseServiceImpl<ContentEntity, ContentM
         log.debug("getContentListByType:{}", type);
 
         LambdaQueryWrapper<ContentEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(ContentEntity::getContentTypeValue, type);
+        queryWrapper.eq(ContentEntity::getCategory, type);
         List<ContentEntity> contentList = this.list(queryWrapper);
 
         if (contentList != null && !contentList.isEmpty()) {
