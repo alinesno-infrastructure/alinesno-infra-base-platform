@@ -31,6 +31,11 @@ public interface IPlatformInitService {
     void initNotice() ;
 
     /**
+     * 初始化内容
+     */
+    void initContent() ;
+
+    /**
      * 初始化友情链接
      */
     void initFriendLink() ;
