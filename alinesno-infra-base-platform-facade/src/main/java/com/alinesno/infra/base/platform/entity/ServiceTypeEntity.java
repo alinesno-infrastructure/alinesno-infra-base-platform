@@ -19,11 +19,6 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ServiceTypeEntity extends InfraBaseEntity {
 
-	@ColumnType(length=255)
-	@ColumnComment("服务类型实体类")
-	@TableField("fina")
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * 名称
 	 */
