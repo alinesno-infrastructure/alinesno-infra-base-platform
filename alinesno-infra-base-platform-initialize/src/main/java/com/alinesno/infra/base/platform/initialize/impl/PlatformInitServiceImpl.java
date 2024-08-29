@@ -1,15 +1,10 @@
 package com.alinesno.infra.base.platform.initialize.impl;
 
-import com.alinesno.infra.base.platform.entity.ProductItemEntity;
-import com.alinesno.infra.base.platform.entity.ProductTypeEntity;
-import com.alinesno.infra.base.platform.entity.SolutionManageEntity;
-import com.alinesno.infra.base.platform.entity.SolutionTypeEntity;
+import com.alinesno.infra.base.platform.entity.*;
 import com.alinesno.infra.base.platform.enums.OwnerEnums;
+import com.alinesno.infra.base.platform.initialize.ContentGenerationStrategy;
 import com.alinesno.infra.base.platform.initialize.IPlatformInitService;
-import com.alinesno.infra.base.platform.service.IProductItemService;
-import com.alinesno.infra.base.platform.service.IProductTypeService;
-import com.alinesno.infra.base.platform.service.ISolutionManageService;
-import com.alinesno.infra.base.platform.service.ISolutionTypeService;
+import com.alinesno.infra.base.platform.service.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +32,9 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
 
     @Autowired
     private ISolutionManageService solutionManageService ;
+
+    @Autowired
+    private IContentService contentService ;
 
     @Override
     public void initProductType() {
@@ -129,6 +127,12 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
     @Override
     public void initProduct() {
 
+        List<ProductItemEntity> allService = getProductItemEntities();
+
+        productItemService.saveOrUpdateBatch(allService) ;
+    }
+
+    private List<ProductItemEntity> getProductItemEntities() {
         // 技术服务
         ProductItemEntity authorityConfigurationService = createProductItemEntity("权限配置服务", "alinesno-infra-base-authority", "权限配置服务", "http://alinesno-infra-base-authority-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-key");
         ProductItemEntity codeGeneratorService = createProductItemEntity("代码生成器", "alinesno-infra-base-init", "代码生成器", "http://alinesno-infra-base-starter-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-code");
@@ -240,8 +244,7 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
             item.setId(id.getAndIncrement());
             item.setProductOwner(OwnerEnums.PLATFORM.getCode());
         });
-
-        productItemService.saveOrUpdateBatch(allService) ;
+        return allService;
     }
 
     @Override
@@ -284,137 +287,21 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
     public void initPlan() {
 
         // 创建解决方案实体列表
-        List<SolutionManageEntity> solutionList = new ArrayList<>();
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("自动化运维解决方案")
-                .setContent("该解决方案旨在帮助企业实现运维流程的自动化，减少人工干预，提高运维效率和可靠性。")
-                .setLink("https://example.com/auto-ops-solution")
-                .setSolutionTypeId(1L)
-                .setRemark("适用于大型企业的IT运维部门。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("分布式日志分析解决方案")
-                .setContent("该解决分布式系统的日志进行集中管理和分析，实现故障排查和性能优化。")
-                .setLink("https://example.com/log-analysis-solution")
-                .setSolutionTypeId(2L)
-                .setRemark("支持多种日志格式和数据源。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("AI智能运维解决方案")
-                .setContent("该解决方案旨在应用人工智能技术，实现智能化的运维管理，提升系统的稳定性和可靠性。")
-                .setLink("https://example.com/ai-ops-solution")
-                .setSolutionTypeId(3L)
-                .setRemark("利用机器学习算法预测潜在问题。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("数据中台建设解决方案")
-                .setContent("该解决方案建设数据中台，实现数据的集中管理和共享应用。")
-                .setLink("https://example.com/data-mid-platform-solution")
-                .setSolutionTypeId(4L)
-                .setRemark("支持实时数据分析和数据湖构建。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("数据报表分析解决方案")
-                .setContent("该解决方案实现数据报表的自动化生成和分析，提供决策支持和业务洞察。")
-                .setLink("https://example.com/data-reporting-solution")
-                .setSolutionTypeId(5L)
-                .setRemark("支持自定义报表模板和多维度分析。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("用户画像解决方案")
-                .setContent("该解决方案构建用户画像，深入了解用户需求和行为，进行个性化推荐。")
-                .setLink("https://example.com/user-profile-solution")
-                .setSolutionTypeId(6L)
-                .setRemark("支持多种用户行为跟踪和分析。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("运维应用画像解决方案")
-                .setContent("该解决方案实现运维应用的画像管理，提高运维效率。")
-                .setLink("https://example.com/ops-application-profile-solution")
-                .setSolutionTypeId(7L)
-                .setRemark("用于监控和优化运维工具性能。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("传统企业转变成业务中台解决方案")
-                .setContent("该解决方案旨在帮助传统企业实现业务中台转型。")
-                .setLink("https://example.com/traditional-to-business-mid-platform-solution")
-                .setSolutionTypeId(8L)
-                .setRemark("支持传统业务流程的数字化转型。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("企业业务中台建设解决方案")
-                .setContent("该解决方案旨在帮助企业建设业务中台，实现业务的集中管理和协同发展。")
-                .setLink("https://example.com/business-mid-platform-construction-solution")
-                .setSolutionTypeId(9L)
-                .setRemark("提供统一的数据和服务接口。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("新旧结合业务微服务解决方案")
-                .setContent("该解决方案结合了传统业务和微服务架构，帮助企业实现业务的快速创新和灵活扩展。")
-                .setLink("https://example.com/legacy-and-microservices-solution")
-                .setSolutionTypeId(10L)
-                .setRemark("支持混合云部署和DevOps流程。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("企业超级自动化解决方案")
-                .setContent("该解决方案旨在帮助企业实现超级自动化转型，提升业务流程的效率和用户体验。")
-                .setLink("https://example.com/super-automation-solution")
-                .setSolutionTypeId(11L)
-                .setRemark("涵盖RPA、AI和流程优化。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("传统业务进行容器云迁移")
-                .setContent("迁移到容器云平台，以提高应用的弹性、可扩展性和部署效率。")
-                .setLink("https://example.com/container-cloud-migration-solution")
-                .setSolutionTypeId(12L)
-                .setRemark("支持Kubernetes和Docker。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("软件供应链最佳实践")
-                .setContent("实施 DevOps 的各种流程和资源，以加速软件交付和提高运维效率。")
-                .setLink("https://example.com/software-supply-chain-best-practices")
-                .setSolutionTypeId(13L)
-                .setRemark("包括CI/CD流水线和安全审计。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("实施 DevOps 流程和资源")
-                .setContent("帮助在组织中实施 DevOps 的各种流程和资源,可扩展性和部署效率。")
-                .setLink("https://example.com/devops-implementation-solution")
-                .setSolutionTypeId(14L)
-                .setRemark("支持敏捷开发和持续集成。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("使用一致的平台管理工作负载")
-                .setContent("跨多个云环境管理和部署工作负载，以实现多云环境下的应用现代化和灵活性。")
-                .setLink("https://example.com/consistent-platform-workload-management-solution")
-                .setSolutionTypeId(15L)
-                .setRemark("支持公有云、私有云和混合云。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("全代管式环境")
-                .setContent("提供全代管式的开发、部署和扩缩容环境，无需关注底层智能体平台。")
-                .setLink("https://example.com/fully-managed-environment-solution")
-                .setSolutionTypeId(16L)
-                .setRemark("适用于无服务器架构。"));
-
-        solutionList.add(new SolutionManageEntity()
-                .setTitle("API 优先方法")
-                .setContent("对旧式应用进行现代化改造，加快新开发模式的实施和应用集成。")
-                .setLink("https://example.com/api-first-approach-solution")
-                .setSolutionTypeId(17L)
-                .setRemark("支持RESTful API设计和文档。"));
-
-        AtomicLong id = new AtomicLong(1L);
-        solutionList.forEach(item -> {
-            item.setId(id.getAndIncrement());
-        });
+        List<SolutionManageEntity> solutionList = ContentGenerationStrategy.getSolutionManageEntities();
 
         solutionManageService.saveOrUpdateBatch(solutionList) ;
     }
 
+
     @Override
     public void initNotice() {
 
+    }
+
+    @Override
+    public void initContent() {
+        List<ContentEntity> contentList = ContentGenerationStrategy.getContents() ;
+        contentService.saveOrUpdateBatch(contentList) ;
     }
 
     @Override
