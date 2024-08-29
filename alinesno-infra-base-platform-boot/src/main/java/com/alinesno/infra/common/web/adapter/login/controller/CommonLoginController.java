@@ -140,23 +140,22 @@ public class CommonLoginController {
                         List.of(
                                 new Menu("产品类型", "base/platform/product/types", false, false, "productTypes",  new Menu.Meta("产品类型", "search", false, null)),
                                 new Menu("产品列表", "base/platform/product/list", false, false, "productList", new Menu.Meta("产品列表", "number", false, null)),
-                                new Menu("方案管理", "base/platform/solutionmanage/list", false, false, "solutionmanage",  new Menu.Meta("方案管理", "row", false, null)),
-                                new Menu("方案类型", "base/platform/solutiontype/list", false, false, "solutiontype",  new Menu.Meta("方案类型", "pdf", false, null)),
-                                // new Menu("产品方案", "base/platform/productsolution/list", false, false, "productsolution",  new Menu.Meta("产品方案", "link", false, null)),
-                                new Menu("产品访问", "base/platform/productaccess/list", false, false, "productAccesslist",  new Menu.Meta("产品访问", "redis", false, null))
+                                new Menu("方案管理", "base/platform/solutionManage/list", false, false, "solutionManage",  new Menu.Meta("方案管理", "row", false, null)),
+                                new Menu("方案类型", "base/platform/solutionType/list", false, false, "solutionType",  new Menu.Meta("方案类型", "pdf", false, null)),
+                                new Menu("产品访问", "base/platform/productAccess/list", false, false, "productAccess",  new Menu.Meta("产品访问", "redis", false, null))
                         )) ;
 
-                // 咨询服务
-                Menu m8 = new Menu("Services", "/services", false, "noRedirect", "Layout" , true ,  new Menu.Meta("咨询服务", "time", false, null),
+                // 智能体管理
+                Menu m8 = new Menu("Services", "/services", false, "noRedirect", "Layout" , true ,  new Menu.Meta("智能体管理", "time", false, null),
                         List.of(
-                                new Menu("产品评价", "base/platform/productjudge/list", false, false, "productjudge",  new Menu.Meta("产品评价", "skill", false, null)),
-                                new Menu("建议反馈", "base/platform/suggest/list", false, false, "suggest",  new Menu.Meta("建议反馈", "tool", false, null)),
-                                new Menu("咨询管理", "base/platform/serviceask/list", false, false, "serviceask", new Menu.Meta("咨询管理", "time", false, null))
+                                new Menu("频道管理", "base/platform/agentChannel/list", false, false, "agentChannel",  new Menu.Meta("频道管理", "skill", false, null)),
+                                new Menu("角色管理", "base/platform/agentRole/list", false, false, "agentRole", new Menu.Meta("角色管理", "time", false, null))
                         ));
 
                 // 安全审计
-                Menu m9 =  new Menu("Audit", "/audit", false, "noRedirect", "Layout" , true ,  new Menu.Meta("安全审计", "log", false, null),
+                Menu m9 =  new Menu("Audit", "/audit", false, "noRedirect", "Layout" , true ,  new Menu.Meta("系统管理", "log", false, null),
                         List.of(
+                                new Menu("建议反馈", "base/platform/suggest/list", false, false, "suggest",  new Menu.Meta("建议反馈", "tool", false, null)),
                                 new Menu("操作日志", "base/platform/audit/operation-logs", false, false, "operationLogs",  new Menu.Meta("操作日志", "log", false, null)),
                                 new Menu("访问日志", "base/platform/audit/access-logs", false, false, "accessLogs",  new Menu.Meta("访问日志", "shopping", false, null))
                         ));
@@ -164,9 +163,9 @@ public class CommonLoginController {
                 // 内容管理
                 Menu m10 = new Menu("Content", "/content", false, "noRedirect", "Layout" , true ,  new Menu.Meta("内容管理", "shopping", false, null),
                         List.of(
-                                new Menu("友情链接", "base/platform/linkpath/list", false, false, "friendLinks",  new Menu.Meta("友情链接", "link", false, null)),
                                 new Menu("内容管理", "base/platform/content/list", false, false, "contentManagement",  new Menu.Meta("内容管理", "time", false, null)),
-                                new Menu("公告管理", "base/platform/announcemanage/list", false, false, "announcemanage",  new Menu.Meta("公告管理", "shopping", false, null))
+                                new Menu("公告管理", "base/platform/announceManage/list", false, false, "announceManage",  new Menu.Meta("公告管理", "shopping", false, null)),
+                                new Menu("友情链接", "base/platform/linkPath/list", false, false, "friendLinks",  new Menu.Meta("友情链接", "link", false, null))
                         ));
 
 
