@@ -40,4 +40,8 @@ public interface IPlatformInitService {
      */
     void initFriendLink() ;
 
+    /**
+     * 初步化频道
+     */
+    void initChannel();
 }
