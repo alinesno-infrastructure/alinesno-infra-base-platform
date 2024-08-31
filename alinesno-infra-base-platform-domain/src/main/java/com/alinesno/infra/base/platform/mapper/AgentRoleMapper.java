@@ -1,6 +1,6 @@
 package com.alinesno.infra.base.platform.mapper;
 
-import com.alinesno.infra.base.platform.entity.AgentRoleEntity;
+import com.alinesno.infra.base.platform.entity.AccountChannelEntity;
 import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
  * @author LuoXiaoDong
  * @version 1.0.0
  */
-public interface AgentRoleMapper extends IBaseMapper<AgentRoleEntity> {
+public interface AgentRoleMapper extends IBaseMapper<AccountChannelEntity> {
 
 }
