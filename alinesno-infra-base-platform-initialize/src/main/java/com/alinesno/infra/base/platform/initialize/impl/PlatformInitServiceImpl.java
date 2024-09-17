@@ -190,7 +190,7 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
         // 推理服务
         ProductItemEntity ocrService = createProductItemEntity("OCR视觉识别服务", "alinesno-infra-smart-ocr", "OCR视觉识别服务", "http://alinesno-infra-smart-ocr-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-text-height");
         ProductItemEntity nlpService = createProductItemEntity("自然语言识别服务", "alinesno-infra-smart-nlp", "自然语言识别服务", "http://alinesno-infra-smart-nlp-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-language");
-        ProductItemEntity largeModelInferenceService = createProductItemEntity("大模型推理服务", "alinesno-infra-smart-brain", "大模型推理服务", "http://alinesno-infra-smart-brain-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-brain");
+        ProductItemEntity largeModelInferenceService = createProductItemEntity("大模型推理服务", "alinesno-infra-smart-brain", "大模型推理服务", "http://alinesno-infra-smart-expert-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-brain");
         ProductItemEntity objectDetectionService = createProductItemEntity("目标检测识别服务", "alinesno-infra-smart-detection", "目标检测识别服务", "http://alinesno-infra-smart-detection-ui.beta.smart.infra.linesno.com", "normal", 0, "fas fa-crosshairs");
 
         List<ProductItemEntity> smartService = new ArrayList<>() ;
