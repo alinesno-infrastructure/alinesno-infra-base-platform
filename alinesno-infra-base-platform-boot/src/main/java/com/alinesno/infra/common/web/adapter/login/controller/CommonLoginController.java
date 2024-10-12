@@ -149,6 +149,7 @@ public class CommonLoginController {
                 Menu m8 = new Menu("Services", "/services", false, "noRedirect", "Layout" , true ,  new Menu.Meta("智能体管理", "time", false, null),
                         List.of(
                                 new Menu("频道管理", "base/platform/agentChannel/list", false, false, "agentChannel",  new Menu.Meta("频道管理", "skill", false, null)),
+                                new Menu("角色管理", "base/platform/agentRole/list", false, false, "agentRole",  new Menu.Meta("角色管理", "log", false, null)),
                                 new Menu("用户收藏", "base/platform/accountChannel/list", false, false, "accountChannel", new Menu.Meta("用户收藏", "time", false, null))
                         ));
 
