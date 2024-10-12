@@ -44,4 +44,10 @@ public interface IPlatformInitService {
      * 初步化频道
      */
     void initChannel();
+
+    /**
+     * 初始化角色
+     */
+    void initRole();
+
 }
