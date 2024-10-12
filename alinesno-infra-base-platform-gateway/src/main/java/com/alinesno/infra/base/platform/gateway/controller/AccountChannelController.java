@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "AgentRole")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/base/platform/agentRole")
+@RequestMapping("/api/infra/base/platform/accountChannel")
 public class AccountChannelController extends BaseController<AccountChannelEntity, IAccountChannelService> {
 
     @Autowired
