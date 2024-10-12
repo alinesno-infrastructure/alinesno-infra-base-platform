@@ -33,6 +33,9 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
     private IAgentChannelService agentChannelService ;
 
     @Autowired
+    private IAgentRoleService agentRoleService ;
+
+    @Autowired
     private ISolutionTypeService solutionTypeService ;
 
     @Autowired
@@ -341,6 +344,77 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
 
         agentChannelService.saveOrUpdateBatch(exampleChannels) ;
         agentChannelService.saveOrUpdateBatch(recommendChannels) ;
+    }
+
+    @Override
+    public void initRole() {
+
+        List<AgentRoleEntity> predefinedRoles = List.of(
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_consultant.png")
+                        .setRoleName("业务咨询客服")
+                        .setResponsibilities("AIP业务咨询问题，用于做客服类的咨询服务")
+                        .setRoleLevel("中级")
+                        .setOrderNumber(1)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_outline_expert.png")
+                        .setRoleName("解决方案大纲设计专家")
+                        .setResponsibilities("解决方案标题大纲拟定和编写")
+                        .setRoleLevel("高级")
+                        .setOrderNumber(2)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_content_expert.png")
+                        .setRoleName("解决方案内容编写专家")
+                        .setResponsibilities("解决方案内容生成并导出成Word/Excel等格式")
+                        .setRoleLevel("高级")
+                        .setOrderNumber(3)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_email_expert.png")
+                        .setRoleName("邮件发送专家")
+                        .setResponsibilities("团队内部人员邮件发送和附近内容发送")
+                        .setRoleLevel("中级")
+                        .setOrderNumber(4)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_db_backup_expert.png")
+                        .setRoleName("数据库备份专家")
+                        .setResponsibilities("用于AIP产品运营数据库备份管理和配置")
+                        .setRoleLevel("高级")
+                        .setOrderNumber(5)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_k8s_expert.png")
+                        .setRoleName("K8S运行状态专家")
+                        .setResponsibilities("用于AIP产品运行K8S状态查询，生成每日报告")
+                        .setRoleLevel("高级")
+                        .setOrderNumber(6)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_git_backup_expert.png")
+                        .setRoleName("Git代码备份专家")
+                        .setResponsibilities("用于AIP基线git代码备份管理")
+                        .setRoleLevel("高级")
+                        .setOrderNumber(7)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625"),
+                new AgentRoleEntity()
+                        .setRoleAvatar("avatar_product_list_consultant.png")
+                        .setRoleName("产品列表客服")
+                        .setResponsibilities("AIP产品问答客服，用于产品有多少还有有哪些功能等问题")
+                        .setRoleLevel("中级")
+                        .setOrderNumber(8)
+                        .setRoleLink("http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/agentChat?roleId=1808349647059738625")
+        );
+
+        AtomicLong id = new AtomicLong(1);
+        predefinedRoles.forEach(item -> {
+            item.setId(id.getAndIncrement());
+        });
+
+        agentRoleService.saveOrUpdateBatch(predefinedRoles);
+
     }
 
     /**
