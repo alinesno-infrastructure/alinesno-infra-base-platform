@@ -46,7 +46,7 @@ export function addAgentRole(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    params: query
+    data: data 
   })
 }
 
