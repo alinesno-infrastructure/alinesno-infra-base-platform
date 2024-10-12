@@ -39,6 +39,7 @@ public class AppConfiguration implements CommandLineRunner {
         platformInitService.initPlan(); // 初始化方案
 
         platformInitService.initChannel(); // 初始化频道
+        platformInitService.initRole(); // 初始化角色
 
         platformInitService.initContent(); // 初始化内容
     }
