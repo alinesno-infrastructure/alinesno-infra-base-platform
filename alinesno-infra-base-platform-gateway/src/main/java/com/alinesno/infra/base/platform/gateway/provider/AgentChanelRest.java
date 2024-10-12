@@ -1,10 +1,14 @@
 package com.alinesno.infra.base.platform.gateway.provider;
 
+import com.alinesno.infra.base.platform.api.AgentRoleDto;
 import com.alinesno.infra.base.platform.entity.AgentChannelEntity;
+import com.alinesno.infra.base.platform.entity.AgentRoleEntity;
 import com.alinesno.infra.base.platform.enums.ChannelType;
 import com.alinesno.infra.base.platform.service.IAgentChannelService;
+import com.alinesno.infra.base.platform.service.IAgentRoleService;
 import com.alinesno.infra.common.facade.response.R;
 import com.alinesno.infra.common.web.adapter.rest.SuperController;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +32,27 @@ public class AgentChanelRest extends SuperController {
 
     @Autowired
     private IAgentChannelService agentChannelService;
+
+    @Autowired
+    private IAgentRoleService agentRoleService ;
+
+    @GetMapping("/getAgentRole")
+    public R<List<AgentRoleDto>> getAgentRole() {
+
+        LambdaQueryWrapper<AgentRoleEntity> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.orderByDesc(AgentRoleEntity::getOrderNumber) ;
+        List<AgentRoleEntity> list = agentRoleService.list(queryWrapper) ;
+
+        List<AgentRoleDto> dtos = list.stream().map(item -> new AgentRoleDto(item.getId(),
+                item.getRoleAvatar(),
+                item.getRoleName(),
+                item.getResponsibilities(),
+                item.getRoleLevel(),
+                item.getRoleLink(),
+                item.getOrderNumber())).toList();
+
+        return R.ok(dtos) ;
+    }
 
     // 查询出所有的hastStatus状态为正常的频道
     @GetMapping("/findAll")
