@@ -34,8 +34,9 @@
             <el-table v-loading="loading" :data="AgentChannelList" @selection-change="handleSelectionChange">
                <el-table-column type="selection" width="50" align="center" />
                <!-- 业务字段-->
-               <el-table-column label="账户名称" align="center" key="accountName" prop="accountName" v-if="columns[0].visible" />
-               <el-table-column label="产品名称" align="center" key="productItemName" prop="productItemName" v-if="columns[1].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="名称" align="left" key="name" prop="name" v-if="columns[0].visible" />
+               <el-table-column label="描述" align="left" key="description" prop="description" v-if="columns[1].visible" :show-overflow-tooltip="true" />
+               <el-table-column label="类型" align="center" key="type" prop="type" v-if="columns[1].visible" :show-overflow-tooltip="true" />
                <el-table-column label="添加时间" align="center" prop="addTime" v-if="columns[2].visible" width="160">
                   <template #default="scope">
                      <span>{{ parseTime(scope.row.addTime) }}</span>
