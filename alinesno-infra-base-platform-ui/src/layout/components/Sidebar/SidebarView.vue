@@ -11,7 +11,7 @@
 export default {
   data () {
     return {
-      currentApplicationName: '基设平台管理'
+      currentApplicationName: '运营管理平台'
     }
   },
   mounted () {
