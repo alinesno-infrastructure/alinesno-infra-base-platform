@@ -14,7 +14,7 @@ export function login(username, password, code, uuid) {
       isToken: false
     },
     method: 'post',
-    params: query
+    data: data
   })
 }
 
@@ -23,22 +23,15 @@ export function login(username, password, code, uuid) {
 export function isSsoLogin(){
   return request({
     url: '/sso/isLogin',
-    headers: {
-      "satoken": "Bearer " + localStorage.getItem("satoken")
-    },
     method: 'get'
   })
 }
 
 // 用户退出
-export function ssoLogout(satoken) {
+export function ssoLogout() {
   return request({
-    url: '/sso/logout',
-    headers: {
-      isToken: false
-    },
-    method: 'post',
-    data: { satoken}
+    url: '/sso/logout' ,
+    method: 'get'
   })
 }
 
@@ -68,7 +61,7 @@ export function register(data) {
       isToken: false
     },
     method: 'post',
-    params: query
+    data: data
   })
 }
 
