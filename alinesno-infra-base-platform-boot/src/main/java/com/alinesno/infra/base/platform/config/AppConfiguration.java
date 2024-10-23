@@ -37,14 +37,14 @@ public class AppConfiguration implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        platformInitService.initProductType();   // 初始化产品类型
-//        platformInitService.initProduct();  // 初始化产品
-//
-//        platformInitService.initPlanType(); // 初始化方案类型
-//        platformInitService.initPlan(); // 初始化方案
-//
-//        platformInitService.initChannel(); // 初始化频道
-//
-//        platformInitService.initContent(); // 初始化内容
+        platformInitService.initProductType();   // 初始化产品类型
+        platformInitService.initProduct();  // 初始化产品
+
+        platformInitService.initPlanType(); // 初始化方案类型
+        platformInitService.initPlan(); // 初始化方案
+
+        platformInitService.initChannel(); // 初始化频道
+
+        platformInitService.initContent(); // 初始化内容
     }
 }
