@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 public class ProductTypeDto extends BaseDto {
 
-    private long orgId ; // 机构id
     private String icon ; // 图标
     private String name; // 名称
     private String code ; // 业务类型编码
