@@ -171,12 +171,13 @@ public class PlatformInitServiceImpl implements IPlatformInitService {
 
 
         // 数据服务
-        ProductItemEntity heterogeneousSystemExtractionService = createProductItemEntity("异构系统抽取服务", "alinesno-infra-data-pipeline", "提供数据集成的功能，用于将不同数据源的数据进行整合和转换", "http://alinesno-infra-data-pipeline-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-exchange-alt");
+        ProductItemEntity heterogeneousSystemExtractionService = createProductItemEntity("异构系统抽取服务", "alinesno-infra-data-pipeline", "提供数据集成的功能，用于将不同数据源的数据进行整合和转换", "http://alinesno-infra-data-pipeline-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-exchange-alt");
         ProductItemEntity kettleDebugManagementService = createProductItemEntity("Kettle调试管理服务", "alinesno-infra-data-integration", "基于Kettle的数据集成服务，集成DataOps能力，用于将不同数据源的数据进行整合和转换", "http://alinesno-infra-data-integration-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-tools");
         ProductItemEntity masterDataService = createProductItemEntity("主数据服务", "alinesno-infra-data-mdm", "主数据服务", "http://alinesno-infra-data-mdm-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-database");
-        ProductItemEntity dataOrchestrationService = createProductItemEntity("数据编排计算服务", "alinesno-infra-data-dolphinscheduler", "数据编排计算服务", "http://alinesno-infra-data-scheduler-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-project-diagram");
-        ProductItemEntity realTimeComputingService = createProductItemEntity("实时计算服务", "alinesno-infra-data-flink", "实时计算服务", "http://alinesno-infra-data-stream-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-stream");
-        ProductItemEntity dataAssetService = createProductItemEntity("数据资产服务", "alinesno-infra-data-assets", "数据资产服务", "http://alinesno-infra-data-assets-ui.beta.data.infra.linesno.com", "normal", 0, "fas fa-coins");
+//        ProductItemEntity dataOrchestrationService = createProductItemEntity("数据编排计算服务", "alinesno-infra-data-dolphinscheduler", "数据编排计算服务", "http://alinesno-infra-data-scheduler-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-project-diagram");
+        ProductItemEntity dataOrchestrationService = createProductItemEntity("数据编排计算服务", "alinesno-infra-data-dolphinscheduler", "数据编排计算服务", "http://alinesno-infra-data-scheduler-ui.infra.dev.linesno.com", "normal", 0, "fas fa-project-diagram");
+        ProductItemEntity realTimeComputingService = createProductItemEntity("实时计算服务", "alinesno-infra-data-flink", "实时计算服务", "http://alinesno-infra-data-stream-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-stream");
+        ProductItemEntity dataAssetService = createProductItemEntity("数据资产服务", "alinesno-infra-data-assets", "数据资产服务", "http://alinesno-infra-data-assets-ui.beta.base.infra.linesno.com", "normal", 0, "fas fa-coins");
 
         List<ProductItemEntity> dataService = new ArrayList<>() ;
         dataService.add(heterogeneousSystemExtractionService);
