@@ -26,4 +26,5 @@ public interface IProductTypeService extends IBaseService<ProductTypeEntity> {
      * @param productTypeDto
      */
     void saveOrgProductCategory(ProductTypeDto productTypeDto);
+
 }
