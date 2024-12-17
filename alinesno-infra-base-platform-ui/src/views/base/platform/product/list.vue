@@ -34,13 +34,15 @@
             <el-table v-loading="loading" :data="ProductItemList" @selection-change="handleSelectionChange">
                <el-table-column type="index" width="50" align="center" />
 
+               <!-- 
                <el-table-column label="图标" align="center" width="60" key="icon">
                  <template #default="scope">
                     <div>
                        <img style="width:40px; height:40px" :src="'http://data.linesno.com/icons/product/' + (scope.$index + 1) + '.png'" />
                     </div>
                  </template>
-               </el-table-column>
+               </el-table-column> 
+               -->
 
                <!-- 业务字段-->
                <el-table-column label="应用名称" align="left" key="name" prop="name" v-if="columns[0].visible">
@@ -55,7 +57,7 @@
                </el-table-column>
                <el-table-column label="访问地址" width="150" align="center" key="link" prop="link" v-if="columns[3].visible" :show-overflow-tooltip="true">
                     <template #default="scope">
-                        <el-button type="primary" bg text>
+                        <el-button type="primary" text>
                             <i class="fa-solid fa-link"></i>&nbsp;
                             <el-link :underline="false" type="primary" :href="scope.row.linkPath" target="_blank">打开方案</el-link>
                         </el-button>
