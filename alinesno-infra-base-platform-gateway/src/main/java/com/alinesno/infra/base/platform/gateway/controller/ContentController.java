@@ -3,6 +3,7 @@ package com.alinesno.infra.base.platform.gateway.controller;
 import com.alinesno.infra.base.platform.entity.ContentEntity;
 import com.alinesno.infra.base.platform.service.IContentService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
+import com.alinesno.infra.common.extend.datasource.annotation.DataPermissionScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
@@ -43,6 +44,7 @@ public class ContentController extends BaseController<ContentEntity, IContentSer
      * @param page    DatatablesPageBean对象。
      * @return 包含DataTables数据的TableDataInfo对象。
      */
+    @DataPermissionScope
     @ResponseBody
     @PostMapping("/datatables")
     public TableDataInfo datatables(HttpServletRequest request, Model model, DatatablesPageBean page) {
