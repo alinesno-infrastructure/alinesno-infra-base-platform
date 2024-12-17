@@ -38,8 +38,8 @@
             </el-row>
 
             <el-table v-loading="loading" :data="ProductTypeList" @selection-change="handleSelectionChange">
-               <el-table-column type="selection" width="50" align="center" />
-               <el-table-column label="图标" align="center" width="80" key="status" v-if="columns[2].visible">
+               <el-table-column type="selection" width="40" align="center" />
+               <el-table-column label="图标" align="center" width="50" key="status" v-if="columns[2].visible">
                  <template #default="scope">
                     <span style="font-size:25px;color:#3b5998;">
                        <i :class="scope.row.icon"></i>
