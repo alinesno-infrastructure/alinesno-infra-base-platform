@@ -52,11 +52,10 @@ export function getProductType(databaseId) {
 
 // 新增数据库
 export function addProductType(data) {
-  debugger
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    params: query
+    data: data 
   })
 }
 
