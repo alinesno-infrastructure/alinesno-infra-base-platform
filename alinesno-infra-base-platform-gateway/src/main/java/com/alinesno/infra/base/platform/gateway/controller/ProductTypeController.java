@@ -3,10 +3,15 @@ package com.alinesno.infra.base.platform.gateway.controller;
 import com.alinesno.infra.base.platform.entity.ProductTypeEntity;
 import com.alinesno.infra.base.platform.service.IProductTypeService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
+import com.alinesno.infra.common.extend.datasource.annotation.DataPermissionQuery;
+import com.alinesno.infra.common.extend.datasource.annotation.DataPermissionSave;
+import com.alinesno.infra.common.extend.datasource.annotation.DataPermissionScope;
+import com.alinesno.infra.common.facade.datascope.PermissionQuery;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +48,7 @@ public class ProductTypeController extends BaseController<ProductTypeEntity, IPr
      * @param page    DatatablesPageBean对象。
      * @return 包含DataTables数据的TableDataInfo对象。
      */
+    @DataPermissionScope
     @ResponseBody
     @PostMapping("/datatables")
     public TableDataInfo datatables(HttpServletRequest request, Model model, DatatablesPageBean page) {
@@ -54,10 +60,23 @@ public class ProductTypeController extends BaseController<ProductTypeEntity, IPr
      * 获取所有产品类型
      * @return
      */
+    @DataPermissionQuery
     @GetMapping("/allProductType")
-    public AjaxResult allProductType(){
-        List<ProductTypeEntity> types = service.list();
+    public AjaxResult allProductType(PermissionQuery query){
+
+        LambdaQueryWrapper<ProductTypeEntity> lambdaQueryWrapper = new LambdaQueryWrapper<>() ;
+        lambdaQueryWrapper.setEntityClass(ProductTypeEntity.class);
+        query.toWrapper(lambdaQueryWrapper);
+
+        List<ProductTypeEntity> types = service.list(lambdaQueryWrapper);
+
         return AjaxResult.success(types);
+    }
+
+    @DataPermissionSave
+    @Override
+    public AjaxResult save(Model model, @RequestBody ProductTypeEntity entity) throws Exception {
+        return super.save(model, entity);
     }
 
     @Override
