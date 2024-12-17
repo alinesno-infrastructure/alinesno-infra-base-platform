@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -53,5 +54,26 @@ public class ProductItemServiceImpl extends IBaseServiceImpl<ProductItemEntity, 
         }
 
         return null;
+    }
+
+    @Override
+    public List<ProductItemDto> findByCategoryId(Long categoryId) {
+
+        LambdaQueryWrapper<ProductItemEntity> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ProductItemEntity::getProductTypeId, categoryId);
+        queryWrapper.orderBy(true, true, ProductItemEntity::getSortNumber) ;
+
+        List<ProductItemEntity> productItemList = this.list(queryWrapper);
+
+        if(productItemList != null && !productItemList.isEmpty()){
+            return productItemList.stream().map(item -> {
+
+                ProductItemDto dto = new ProductItemDto();
+                BeanUtils.copyProperties(item, dto);
+
+                return dto;
+            }).toList();
+        }
+        return Collections.emptyList() ;
     }
 }
