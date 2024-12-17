@@ -42,12 +42,11 @@ export function getProductItem(databaseId) {
 }
 
 // 新增数据库
-export function addProductItem(query) {
-  debugger
+export function addProductItem(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
-    params: query
+    data: data 
   })
 }
 
