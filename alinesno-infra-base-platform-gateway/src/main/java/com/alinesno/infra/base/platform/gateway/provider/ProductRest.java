@@ -30,6 +30,33 @@ public class ProductRest extends SuperController {
     private IProductTypeService productTypeService;
 
     /**
+     * 删除组织业务产品delOrgProduct
+     */
+    @DeleteMapping("/delOrgProduct")
+    public R<String> delOrgProduct(@RequestParam Long productId) {
+
+        // 删除组织业务产品，并返回删除结果
+        productItemService.removeById(productId);
+
+        return R.ok("删除成功");
+    }
+
+    /**
+     * 删除组织产品分类delProductCategory
+     */
+    @DeleteMapping("/delProductCategory")
+    public R<String>  delProductCategory(@RequestParam Long categoryId) {
+        // 判断分类下面是否包含产品
+        if (!productItemService.findByCategoryId(categoryId).isEmpty()) {
+            return R.fail("该分类下存在产品，无法删除");
+        }
+
+        productTypeService.removeById(categoryId);
+
+        return R.ok("删除成功");
+    }
+
+    /**
      * 保存组织业务产品
      */
     @PostMapping("/saveOrgProduct")
