@@ -80,3 +80,12 @@ export function changeProductStatus(id , status) {
         params: query
     })
 }
+
+// 修改字段
+export function changeProductField(data) {
+    return request({
+        url: managerUrl.changeField,
+        method: 'post',
+        data: data
+    })
+}
