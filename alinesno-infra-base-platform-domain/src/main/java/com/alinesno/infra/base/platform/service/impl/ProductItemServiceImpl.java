@@ -76,4 +76,25 @@ public class ProductItemServiceImpl extends IBaseServiceImpl<ProductItemEntity, 
         }
         return Collections.emptyList() ;
     }
+
+    @Override
+    public List<ProductItemDto> recommendedProducts() {
+        LambdaQueryWrapper<ProductItemEntity> queryWrapper = new LambdaQueryWrapper<>();
+
+        queryWrapper.eq(ProductItemEntity::getHasRecommend, 1);
+        queryWrapper.orderBy(true, true, ProductItemEntity::getSortNumber) ;
+
+        List<ProductItemEntity> productItemList = this.list(queryWrapper);
+
+        if(productItemList != null && !productItemList.isEmpty()){
+            return productItemList.stream().map(item -> {
+
+                ProductItemDto dto = new ProductItemDto();
+                BeanUtils.copyProperties(item, dto);
+
+                return dto;
+            }).toList();
+        }
+        return Collections.emptyList() ;
+    }
 }
