@@ -5,10 +5,12 @@
          <el-col :span="24" :xs="24">
             <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="100px">
                <el-form-item label="应用名称" prop="name">
-                  <el-input v-model="queryParams.name" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
+                  <el-input v-model="queryParams.name" placeholder="请输入应用名称" clearable style="width: 240px"
+                     @keyup.enter="handleQuery" />
                </el-form-item>
                <el-form-item label="应用介绍" prop="productBrief">
-                  <el-input v-model="queryParams['condition[productBrief|like]']" placeholder="请输入应用名称" clearable style="width: 240px" @keyup.enter="handleQuery" />
+                  <el-input v-model="queryParams['condition[productBrief|like]']" placeholder="请输入应用名称" clearable
+                     style="width: 240px" @keyup.enter="handleQuery" />
                </el-form-item>
                <el-form-item>
                   <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
@@ -41,73 +43,79 @@
                        <img style="width:40px; height:40px" :src="'http://data.linesno.com/icons/product/' + (scope.$index + 1) + '.png'" />
                     </div>
                  </template>
-               </el-table-column> 
-               -->
+</el-table-column>
+-->
 
                <!-- 业务字段-->
                <el-table-column label="应用名称" align="left" key="name" prop="name" v-if="columns[0].visible">
-                   <template #default="scope">
-                        <div>
-                           {{ scope.row.name }}
-                        </div>
-                        <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
-                           {{ scope.row.productBrief }}
-                        </div>
+                  <template #default="scope">
+                     <div>
+                        {{ scope.row.name }}
+                     </div>
+                     <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
+                        {{ scope.row.productBrief }}
+                     </div>
                   </template>
                </el-table-column>
-               <el-table-column label="访问地址" width="150" align="center" key="link" prop="link" v-if="columns[3].visible" :show-overflow-tooltip="true">
-                    <template #default="scope">
-                        <el-button type="primary" text>
-                            <i class="fa-solid fa-link"></i>&nbsp;
-                            <el-link :underline="false" type="primary" :href="scope.row.linkPath" target="_blank">打开方案</el-link>
-                        </el-button>
-                    </template>
+               <el-table-column label="访问地址" width="150" align="center" key="link" prop="link" v-if="columns[3].visible"
+                  :show-overflow-tooltip="true">
+                  <template #default="scope">
+                     <el-button type="primary" text>
+                        <i class="fa-solid fa-link"></i>&nbsp;
+                        <el-link :underline="false" type="primary" :href="scope.row.linkPath"
+                           target="_blank">打开方案</el-link>
+                     </el-button>
+                  </template>
                </el-table-column>
                <el-table-column label="产品类型" align="center" key="allow_url" prop="linkPath" v-if="columns[2].visible">
-                   <template #default="scope">
-                      <el-select disabled v-model="scope.row.productTypeId" placeholder="请选择产品类型">
-                        <el-option v-for="item in productTypeOptions"
-                                :label="item.name"
-                                :key="item.id"
-                                :value="item.id">
-                                {{ item.name }}
+                  <template #default="scope">
+                     <el-select disabled v-model="scope.row.productTypeId" placeholder="请选择产品类型">
+                        <el-option v-for="item in productTypeOptions" :label="item.name" :key="item.id"
+                           :value="item.id">
+                           {{ item.name }}
                         </el-option>
-                      </el-select>
-                   </template>
+                     </el-select>
+                  </template>
                </el-table-column>
-               <el-table-column label="应用状态" align="center" width="100" key="prodStatus" prop="isPublic"  v-if="columns[3].visible" >
-                 <template #default="scope">
-                   <span>{{ prodStatusTrans(scope.row.prodStatus ) }}</span>
-                 </template>
+               <el-table-column label="状态" align="center" width="100" key="prodStatus" prop="isPublic"
+                  v-if="columns[3].visible">
+                  <template #default="scope">
+                     <span>{{ prodStatusTrans(scope.row.prodStatus) }}</span>
+                  </template>
                </el-table-column>
 
-               <el-table-column label="所属类型" align="center" key="typeOwner" prop="typeOwner">
+               <el-table-column label="推荐" align="center" width="100" key="hasRecommend" prop="hasRecommend" v-if="columns[4].visible">
                   <template #default="scope">
-                     <el-button type="success" bg text v-if="scope.row.productOwner === 'platform'">
-                           <i class="fa-solid fa-link"></i>&nbsp;平台
+                     <el-switch 
+                        v-model="scope.row.hasRecommend" 
+                        :active-value=1 
+                        :inactive-value=0
+                        @change="handleChangeProductField(scope.row)">
+                     </el-switch>
+                  </template>
+               </el-table-column>
+
+               <el-table-column label="所属类型" align="center" key="typeOwner" width="150" prop="typeOwner">
+                  <template #default="scope">
+                     <el-button type="success" text v-if="scope.row.productOwner === 'platform'">
+                        <i class="fa-solid fa-computer"></i>&nbsp;平台
                      </el-button>
-                     <el-button type="primary" bg text v-else>
-                           <i class="fa-solid fa-link"></i>&nbsp;组织
+                     <el-button type="primary" text v-else>
+                        <i class="fa-solid fa-user-tag"></i>&nbsp;组织
                      </el-button>
                   </template>
                </el-table-column>
 
-               <el-table-column label="是否公开" align="center" width="100" key="isPublic" prop="isPublic" v-if="columns[4].visible" >
+               <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[5].visible">
                   <template #default="scope">
-                    <span>{{ isPublicTrans(scope.row.isPublic ) }}</span>
+                     <el-switch 
+                        v-model="scope.row.hasStatus" 
+                        :active-value=0 
+                        :inactive-value=1 
+                        @change="handleStatusChange(scope.row)">
+                     </el-switch>
                   </template>
                </el-table-column>
-
-              <el-table-column label="状态" prop="hasStatus" align="left" placeholder="0:禁用,1:开启" :width=80 v-if="columns[5].visible">
-                <template #default="scope">
-                  <el-switch
-                      v-model="scope.row.hasStatus"
-                      :active-value=0
-                      :inactive-value=1
-                      @change="handleStatusChange(scope.row)"
-                  ></el-switch>
-                </template>
-              </el-table-column>
 
                <el-table-column label="添加时间" align="center" prop="addTime" v-if="columns[6].visible" width="160">
                   <template #default="scope">
@@ -130,7 +138,8 @@
 
                </el-table-column>
             </el-table>
-            <pagination v-show="total > 0" :total="total" v-model:page="queryParams.pageNum" v-model:limit="queryParams.pageSize" @pagination="getList" />
+            <pagination v-show="total > 0" :total="total" v-model:page="queryParams.pageNum"
+               v-model:limit="queryParams.pageSize" @pagination="getList" />
          </el-col>
       </el-row>
 
@@ -143,36 +152,32 @@
                      <!-- <el-input v-model="form.logo" placeholder="请输入应用图标" maxlength="255" /> -->
 
                      <el-upload action="#" list-type="picture-card" :auto-upload="false">
-                           <el-icon><Plus /></el-icon>
+                        <el-icon>
+                           <Plus />
+                        </el-icon>
 
-                           <template #file="{ file }">
-                              <div>
+                        <template #file="{ file }">
+                           <div>
                               <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
                               <span class="el-upload-list__item-actions">
-                                 <span
-                                    class="el-upload-list__item-preview"
-                                    @click="handlePictureCardPreview(file)"
-                                 >
+                                 <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                                     <el-icon><zoom-in /></el-icon>
                                  </span>
-                                 <span
-                                    v-if="!disabled"
-                                    class="el-upload-list__item-delete"
-                                    @click="handleDownload(file)"
-                                 >
-                                    <el-icon><Download /></el-icon>
+                                 <span v-if="!disabled" class="el-upload-list__item-delete"
+                                    @click="handleDownload(file)">
+                                    <el-icon>
+                                       <Download />
+                                    </el-icon>
                                  </span>
-                                 <span
-                                    v-if="!disabled"
-                                    class="el-upload-list__item-delete"
-                                    @click="handleRemove(file)"
-                                 >
-                                    <el-icon><Delete /></el-icon>
+                                 <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
+                                    <el-icon>
+                                       <Delete />
+                                    </el-icon>
                                  </span>
                               </span>
-                              </div>
-                           </template>
-                        </el-upload>
+                           </div>
+                        </template>
+                     </el-upload>
 
                   </el-form-item>
                </el-col>
@@ -183,14 +188,11 @@
                </el-col>
             </el-row>
             <el-form-item label="产品类型" prop="productTypeId">
-              <el-select v-model="form.productTypeId" placeholder="请选择产品类型">
-                <el-option v-for="item in productTypeOptions"
-                        :label="item.name"
-                        :key="item.id"
-                        :value="item.id">
-                        {{ item.name }}
-                </el-option>
-              </el-select>
+               <el-select v-model="form.productTypeId" placeholder="请选择产品类型">
+                  <el-option v-for="item in productTypeOptions" :label="item.name" :key="item.id" :value="item.id">
+                     {{ item.name }}
+                  </el-option>
+               </el-select>
             </el-form-item>
             <el-row>
                <el-col :span="24">
@@ -209,29 +211,26 @@
                <el-col :span="24">
                   <el-form-item label="应用状态" prop="prodStatus">
                      <el-radio-group v-model="form.prodStatus">
-                        <el-radio
-                           v-for="item in prodStatusOptions"
-                           :key="item.key"
-                           :label="item.key"
-                        >{{ item.label }}</el-radio>
+                        <el-radio v-for="item in prodStatusOptions" :key="item.key" :label="item.key">{{ item.label
+                           }}</el-radio>
                      </el-radio-group>
                   </el-form-item>
                </el-col>
 
                <el-col :span="24">
-                 <el-form-item label="是否公开" prop="isPublic"  >
-                   <el-radio-group v-model="form.isPublic" class="myradiogroup"  @change="$forceUpdate()">
-                     <el-radio :label=1>公开</el-radio>
-                     <el-radio :label=0>不公开</el-radio>
-                   </el-radio-group>
-                 </el-form-item>
+                  <el-form-item label="是否公开" prop="isPublic">
+                     <el-radio-group v-model="form.isPublic" class="myradiogroup" @change="$forceUpdate()">
+                        <el-radio :label=1>公开</el-radio>
+                        <el-radio :label=0>不公开</el-radio>
+                     </el-radio-group>
+                  </el-form-item>
                </el-col>
             </el-row>
 
             <el-row>
                <el-col :span="24">
                   <el-form-item label="备注" prop="productDescribe">
-                     <el-input v-model="form.productDescribe" type="textarea"  placeholder="请输入应用备注"></el-input>
+                     <el-input v-model="form.productDescribe" type="textarea" placeholder="请输入应用备注"></el-input>
                   </el-form-item>
                </el-col>
             </el-row>
@@ -250,16 +249,17 @@
 <script setup name="ProductItem">
 
 import {
-  listProductItem,
-  delProductItem,
-  getProductItem,
-  updateProductItem,
-  addProductItem,
-  changeProductStatus
+   listProductItem,
+   delProductItem,
+   getProductItem,
+   updateProductItem,
+   changeProductField,
+   addProductItem,
+   changeProductStatus
 } from "@/api/base/platform/product";
 
 import {
-  getAllProductType,
+   getAllProductType,
 } from "@/api/base/platform/productType";
 
 const router = useRouter();
@@ -301,19 +301,19 @@ const data = reactive({
       productBrief: undefined
    },
    rules: {
-      name: [{ required: true, message: "应用名称不能为空", trigger: "blur" }] ,
+      name: [{ required: true, message: "应用名称不能为空", trigger: "blur" }],
       productBrief: [{ required: true, message: "应用介绍不能为空", trigger: "blur" }],
-      linkPath: [{ required: true, message: "授权地址不能为空", trigger: "blur" }] ,
-      prodStatus: [{ required: true , message: "应用状态不能为空", trigger: "blur"}],
-      productTypeId: [{ required: true , message: "产品类型", trigger: "blur"}],
-      isPublic: [{ required: true, message: "是否公开不能为空", trigger: "blur" }] ,
+      linkPath: [{ required: true, message: "授权地址不能为空", trigger: "blur" }],
+      prodStatus: [{ required: true, message: "应用状态不能为空", trigger: "blur" }],
+      productTypeId: [{ required: true, message: "产品类型", trigger: "blur" }],
+      isPublic: [{ required: true, message: "是否公开不能为空", trigger: "blur" }],
       productDescribe: [{ required: false, message: "备注不能为空", trigger: "blur" }]
    },
    prodStatusOptions: [
-    {key: "normal", label: "正常",cantSelect: false},
-    {key: "internal", label: "内测",cantSelect: false},
-    {key: "public", label: "公测",cantSelect: false},
-  ],
+      { key: "normal", label: "正常", cantSelect: false },
+      { key: "internal", label: "内测", cantSelect: false },
+      { key: "public", label: "公测", cantSelect: false },
+   ],
 });
 
 const { queryParams, form, rules, prodStatusOptions } = toRefs(data);
@@ -426,41 +426,58 @@ function submitForm() {
 };
 
 function isPublicTrans(value) {
-  switch (value) {
-    case 0:
-      return "不公开";
-    case 1:
-      return "公开";
-    default:
-      return "公开";
-  }
+   switch (value) {
+      case 0:
+         return "不公开";
+      case 1:
+         return "公开";
+      default:
+         return "公开";
+   }
 }
 
 function prodStatusTrans(value) {
-  switch (value) {
-    case "normal":
-      return "正常";
-    case "internal":
-      return "内测";
-    case "public":
-      return "公测";
-    default:
-      return "正常";
-  }
+   switch (value) {
+      case "normal":
+         return "正常";
+      case "internal":
+         return "内测";
+      case "public":
+         return "公测";
+      default:
+         return "正常";
+   }
+}
+
+/** 字段状态修改 */
+function handleChangeProductField(row){
+
+   let data = {
+      id: row.id ,
+      field: 'hasRecommend',
+      value: row.hasRecommend
+   }
+
+   return changeProductField(data).then(response => {
+      if (response.code == 200) {
+         proxy.$modal.msgSuccess("操作成功");
+         getList();
+      }
+   });
 }
 
 
 /** 状态修改**/
 function handleStatusChange(row) {
-  return changeProductStatus(row.id, row.hasStatus).then(response=>{
-    if(response.code == 200){
-      proxy.$modal.msgSuccess("操作成功");
-      getList();
-    }
-  });
+   return changeProductStatus(row.id, row.hasStatus).then(response => {
+      if (response.code == 200) {
+         proxy.$modal.msgSuccess("操作成功");
+         getList();
+      }
+   });
 };
 
-handleAllProductType() ;
+handleAllProductType();
 getList();
 
 </script>
