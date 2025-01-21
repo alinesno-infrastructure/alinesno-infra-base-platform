@@ -34,4 +34,10 @@ public interface IProductItemService extends IBaseService<ProductItemEntity> {
      * @return
      */
     List<ProductItemDto> findByCategoryId(Long categoryId);
+
+    /**
+     * 查询推荐产品信息
+     * @return
+     */
+    List<ProductItemDto> recommendedProducts();
 }
