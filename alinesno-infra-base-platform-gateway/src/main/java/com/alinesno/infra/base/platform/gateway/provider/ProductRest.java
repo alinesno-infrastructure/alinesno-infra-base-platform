@@ -30,6 +30,15 @@ public class ProductRest extends SuperController {
     private IProductTypeService productTypeService;
 
     /**
+     * 获取到推荐的应用列表
+     */
+    @GetMapping("/recommendedProducts")
+    public R<List<ProductItemDto>> recommendedProducts() {
+        // 获取推荐的应用列表，并转换为ProductItemDto列表返回
+        return R.ok(productItemService.recommendedProducts());
+    }
+
+    /**
      * 删除组织业务产品delOrgProduct
      */
     @DeleteMapping("/delOrgProduct")
